@@ -9,7 +9,6 @@ namespace Reflective.Domain
         {
             services.AddSingleton<ActivityService>();
             services.AddSingleton<ActivityPlanService>();
-            services.AddSingleton<ActivitySessionService>();
         }
     }
 }

@@ -1,4 +1,4 @@
-using Reflective.Domain.Entities;
+using Reflective.Domain.Entities.ActivityAggregate;
 using Reflective.Domain.Entities.ActivityPlanAggregate;
 using Reflective.Domain.Persistence.Repositories;
 

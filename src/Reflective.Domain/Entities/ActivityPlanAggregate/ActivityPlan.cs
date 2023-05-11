@@ -1,3 +1,4 @@
+using Reflective.Domain.Entities.ActivityAggregate;
 using Reflective.Domain.Entities.Common;
 
 namespace Reflective.Domain.Entities.ActivityPlanAggregate
