@@ -27,7 +27,7 @@ namespace Reflective.Domain.Entities.ActivityPlanAggregate
 
         public List<ActivityPlanVersion> Versions { get; set; } = new();
 
-        internal void AdjustPlan(TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        internal void Adjust(TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
         {
             ActivityPlanVersion latestVersion = Versions.First(v => v.EndDate is null);
 
