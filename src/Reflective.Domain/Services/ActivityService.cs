@@ -19,13 +19,13 @@ namespace Reflective.Domain.Services
             return newActivity;
         }
 
-        public async Task StartActivitySession(Activity activity, CancellationToken cancellationToken = default)
+        public async Task StartActivitySessionAsync(Activity activity, CancellationToken cancellationToken = default)
         {
             activity.StartSession();
             await _ar.UpdateAsync(activity, cancellationToken);
         }
 
-        public async Task EndActivitySession(Activity activity, CancellationToken cancellationToken = default)
+        public async Task EndActivitySessionAsync(Activity activity, CancellationToken cancellationToken = default)
         {
             activity.EndSession();
             await _ar.UpdateAsync(activity, cancellationToken);
