@@ -5,7 +5,7 @@ namespace Reflective.Domain
 {
     public static class DependencyInjection
     {
-        public static void ConfigureDomainServices(this IServiceCollection services)
+        public static void AddDomainServices(this IServiceCollection services)
         {
             services.AddSingleton<ActivityService>();
             services.AddSingleton<ActivityPlanService>();
