@@ -7,8 +7,8 @@ namespace Reflective.Domain
     {
         public static void AddDomainServices(this IServiceCollection services)
         {
-            services.AddSingleton<ActivityService>();
-            services.AddSingleton<ActivityPlanService>();
+            services.AddScoped<ActivityService>();
+            services.AddScoped<ActivityPlanService>();
         }
     }
 }

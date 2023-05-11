@@ -11,8 +11,8 @@ namespace Reflective.Infrastructure
     {
         public static void AddInfrastructureServices(this IServiceCollection services, string sqliteDataSource)
         {
-            services.AddSingleton<IActivityRepository, ActivityRepository>();
-            services.AddSingleton<IActivityPlanRepository, ActivityPlanRepository>();
+            services.AddScoped<IActivityRepository, ActivityRepository>();
+            services.AddScoped<IActivityPlanRepository, ActivityPlanRepository>();
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlite(new SqliteConnectionStringBuilder(){
