@@ -1,3 +1,6 @@
+using Reflective.Domain;
+using Reflective.Infrastructure;
+
 internal class Program
 {
     private static void Main(string[] args)
@@ -10,6 +13,9 @@ internal class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddDomainServices();
+        builder.Services.AddInfrastructureServices(builder.Configuration.GetConnectionString("SQLiteDataSource"));
 
         var app = builder.Build();
 

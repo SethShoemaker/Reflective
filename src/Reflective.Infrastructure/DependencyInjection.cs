@@ -1,3 +1,4 @@
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Reflective.Domain.Persistence.Repositories;
@@ -8,13 +9,17 @@ namespace Reflective.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static void AddInfrastructureServices(this IServiceCollection services, string connectionString)
+        public static void AddInfrastructureServices(this IServiceCollection services, string sqliteDataSource)
         {
             services.AddSingleton<IActivityRepository, ActivityRepository>();
             services.AddSingleton<IActivityPlanRepository, ActivityPlanRepository>();
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlite(connectionString);
+                options.UseSqlite(new SqliteConnectionStringBuilder(){
+                    Mode = SqliteOpenMode.ReadWriteCreate,
+                    ForeignKeys = true,
+                    DataSource = sqliteDataSource
+                }.ToString());
             });
         }
     }
