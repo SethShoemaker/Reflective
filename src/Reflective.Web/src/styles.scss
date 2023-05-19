@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: Figtree;
+    src: url(assets/fonts/Figtree/Figtree-VariableFont_wght.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: Figtree;
+    font-style: italic;
+    src: url(assets/fonts/Figtree/Figtree-Italic-VariableFont_wght.ttf) format("truetype");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Figtree;
+    overflow: hidden;
+}

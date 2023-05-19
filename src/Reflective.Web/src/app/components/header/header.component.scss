@@ -1,0 +1,98 @@
+@import '../../../variables.scss';
+
+header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: $darkBlue1;
+    color: $white;
+    padding: calc(1.5rem + 0.3vw) calc(0.9rem + 2vw);
+
+    div#left{
+        display: flex;
+        align-items: center;
+
+        span{
+            font-size: calc(1.2rem + 0.5vw);
+            letter-spacing: 0.06rem;
+            user-select: none;
+        }
+    }
+
+    div#right-mobile{ display: none; }
+
+    @media (max-width: 500px) {
+        div#right-mobile{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            button{
+                border: none;
+                background: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                img{
+                    height: 1.05rem;
+                }
+            }
+        }
+    }
+
+    nav#right-desktop{ display: none; }
+
+    @media (min-width:501px) {
+        nav#right-desktop{
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-right: calc(0.4rem + 0.25vw);
+
+            div{
+                display: flex;
+                align-items: center;
+
+                &:not(:first-of-type){
+                    margin-left: calc(2.1rem + 0.3vw);
+                }
+
+                a{
+                    font-size: calc(0.92rem + 0.25vw);
+                    letter-spacing: 0.06rem;
+                    font-weight: 400;
+                    cursor: pointer;
+                }
+
+                img{
+                    margin: calc(0.15rem) 0 0 calc(0.21rem);
+                    height: calc(0.4rem + 0.05vw);
+                }
+            }
+        }
+    }
+}
+
+nav#mobile-nav{ display: none; }
+
+@media (max-width: 500px){
+    nav#mobile-nav{
+        display: flex;
+        flex-direction: column;
+        background-color: $darkBlue2;
+        padding: 1.6rem 1.3rem;
+        
+        a{
+            color: $white;
+            font-weight: 300;
+            letter-spacing: 0.03rem;
+        }
+    
+        div#divider{
+            background-color: $grey2;
+            margin: 0.9rem 0.3rem;
+            height: 0.08rem;
+        }
+    }
+}

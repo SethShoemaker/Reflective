@@ -1,0 +1,25 @@
+<header>
+    <div id="left">
+        <span>{{ time }}</span>
+    </div>
+    <div id="right-mobile">
+        <button (click)="toggleMobileMenu()">
+            <img src="assets/images/icons/menu.svg">
+        </button>
+    </div>
+    <nav id="right-desktop">
+        <div>
+            <a (click)="emitPlansShow()">Plans</a>
+            <img src="assets/images/icons/dropdown.svg">
+        </div>
+        <div>
+            <a (click)="emitActivitiesShow()">Activities</a>
+            <img src="assets/images/icons/dropdown.svg">
+        </div>
+    </nav>
+</header>
+<nav id="mobile-nav" *ngIf="mobileMenuIsVisible">
+    <a (click)="emitActivitiesShow()">Activities</a>
+    <div id="divider"></div>
+    <a (click)="emitPlansShow()">Plans</a>
+</nav>
