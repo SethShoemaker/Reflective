@@ -1,5 +1,6 @@
 using Reflective.Domain.Entities.ActivityAggregate;
 using Reflective.Domain.Entities.Common;
+using Reflective.Domain.Exceptions;
 
 namespace Reflective.Domain.Entities.ActivityPlanAggregate
 {
@@ -30,7 +31,10 @@ namespace Reflective.Domain.Entities.ActivityPlanAggregate
 
         internal void Adjust(TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
         {
-            ActivityPlanVersion latestVersion = Versions.First(v => v.EndDate is null);
+            ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
+
+            if(latestVersion is null)
+                throw new CannotAdjustEndedPlanException($"cannot adjust plan, already ended");
 
             if(latestVersion.StartDate == DateOnly.FromDateTime(DateTime.Today))
             {
@@ -58,8 +62,10 @@ namespace Reflective.Domain.Entities.ActivityPlanAggregate
 
         internal void End()
         {
-            ActivityPlanVersion latestVersion = Versions.First(v => v.EndDate is null);
-            
+            ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
+
+            if(latestVersion is null) return;
+
             latestVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
         }
     }
