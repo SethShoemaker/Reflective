@@ -63,6 +63,12 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
         private List<ActivityPlan> ActivityPlans { get; set; } = new();
 
+        internal void CreatePlan(string name, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        {
+            ActivityPlan activityPlan = new(name, this, timeOfDay, duration, daysOfWeek);
+            ActivityPlans.Add(activityPlan);
+        }
+
         internal void AdjustPlan(Guid planId, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
         {
             if(IsNoLongerBeingTracked())
