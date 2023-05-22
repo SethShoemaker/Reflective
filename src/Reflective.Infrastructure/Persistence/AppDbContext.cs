@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Reflective.Domain.Entities.ActivityAggregate;
-using Reflective.Domain.Entities.ActivityPlanAggregate;
 
 namespace Reflective.Infrastructure.Persistence
 {
