@@ -1,6 +1,6 @@
 using Reflective.Domain.Entities.Common;
 
-namespace Reflective.Domain.Entities.ActivityPlanAggregate
+namespace Reflective.Domain.Entities.ActivityAggregate
 {
     public class ActivityPlanVersion : EntityBase
     {

@@ -1,10 +1,9 @@
-using Reflective.Domain.Entities.ActivityAggregate;
 using Reflective.Domain.Entities.Common;
 using Reflective.Domain.Exceptions;
 
-namespace Reflective.Domain.Entities.ActivityPlanAggregate
+namespace Reflective.Domain.Entities.ActivityAggregate
 {
-    public class ActivityPlan : EntityBase, IAggregateRoot
+    public class ActivityPlan : EntityBase
     {
         private ActivityPlan(){}
 

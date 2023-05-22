@@ -1,10 +1,9 @@
-using Reflective.Domain.Entities.ActivityPlanAggregate;
 using Reflective.Domain.Entities.Common;
 using Reflective.Domain.Exceptions;
 
 namespace Reflective.Domain.Entities.ActivityAggregate
 {
-    public class Activity : EntityBase
+    public class Activity : EntityBase, IAggregateRoot
     {
         private Activity(){}
 
@@ -15,19 +14,13 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             TrackingPeriodStart = DateOnly.FromDateTime(DateTime.Today);
         }
 
-        public string Name { get; set; } = null!;
+        public string Name { get; private set; } = null!;
 
-        public string Description { get; set; } = null!;
-
-        public List<ActivitySession> Sessions { get; set; } = new();
-
-        public ActivitySession? ActiveSession { get; set; }
+        public string Description { get; private set; } = null!;
 
         private DateOnly TrackingPeriodStart { get; set; }
 
         private DateOnly TrackingPeriodEnd { get; set; }
-
-        private List<ActivityPlan> ActivityPlans { get; set; } = new();
 
         public bool IsNoLongerBeingTracked() => TrackingPeriodEnd != null;
 
@@ -38,6 +31,10 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             foreach(ActivityPlan activityPlan in ActivityPlans)
                 activityPlan.End();
         }
+
+        public List<ActivitySession> Sessions { get; private set; } = new();
+
+        public ActivitySession? ActiveSession { get; private set; }
 
         internal void StartSession()
         {
@@ -62,6 +59,32 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
             ActiveSession.End = DateTime.Now;
             ActiveSession = null;
+        }
+
+        private List<ActivityPlan> ActivityPlans { get; set; } = new();
+
+        internal void AdjustPlan(Guid planId, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        {
+            if(IsNoLongerBeingTracked())
+                throw new ActivityIsNoLongerBeingTrackedException($"cannot adjust activity plan for \"{Name}\", activity is no longer being tracked");
+
+            ActivityPlan? plan = ActivityPlans.FirstOrDefault(ap => ap.Id == planId);
+            if(plan is null)
+                throw new ActivityPlanDoesntExistException($"ActivityPlan with id of \"${planId}\" doesn't exist for \"{Name}\"");
+
+            plan.Adjust(timeOfDay, duration, daysOfWeek);
+        }
+
+        internal void EndPlan(Guid planId)
+        {
+            if(IsNoLongerBeingTracked())
+                throw new ActivityIsNoLongerBeingTrackedException($"cannot end activity plan for \"{Name}\", activity is no longer being tracked");
+
+            ActivityPlan? plan = ActivityPlans.FirstOrDefault(ap => ap.Id == planId);
+            if(plan is null)
+                throw new ActivityPlanDoesntExistException($"ActivityPlan with id of \"${planId}\" doesn't exist for \"{Name}\"");
+
+            plan.End();
         }
     }
 }
