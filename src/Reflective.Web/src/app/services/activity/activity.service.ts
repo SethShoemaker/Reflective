@@ -7,11 +7,8 @@ import { Activity } from 'src/app/models/activity.model';
   providedIn: 'root'
 })
 export class ActivityService {
-  private http: HttpClient;
-
-  constructor(http: HttpClient) {
-    this.http = http;
-  }
+  
+  constructor(private http: HttpClient) {}
 
   getList(): Observable<Activity[]> {
     return this.http.get<Activity[]>("/activities/list");
