@@ -1,0 +1,19 @@
+@import '../_variables.scss';
+
+.button{
+    background-color: $blue;
+    border-radius: calc(0.35rem + 0.06vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(1rem - 0.39vw) calc(1.2rem - 0.35vw);
+    color: $white;
+    font-size: calc(0.8rem + 0.1vw);
+    letter-spacing: calc(0.04rem + 0.009vw);
+    cursor: pointer;
+
+    img{
+        max-height: calc(0.42rem + 0.25vw);
+        padding-right: calc(0.7rem - 0.5vw);
+    }
+}

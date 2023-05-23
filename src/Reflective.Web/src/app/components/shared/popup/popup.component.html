@@ -1,0 +1,17 @@
+<div id="backdrop"></div>
+<div class="popup">
+    <div class="head">
+        <div class="left">
+            {{ title }}
+        </div>
+        <div class="right">
+            <div (click)="close.emit()" role="button">
+                <span>Close</span>
+                <img src="assets/images/icons/exit.svg">
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <ng-content></ng-content>
+    </div>
+</div>
