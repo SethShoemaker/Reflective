@@ -5,7 +5,7 @@
             {{ title }}
         </div>
         <div class="right">
-            <div (click)="close.emit()" role="button">
+            <div (click)="close.emit()" role="button" *ngIf="closeButtonIsActive">
                 <span>Close</span>
                 <img src="assets/images/icons/exit.svg">
             </div>
