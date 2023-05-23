@@ -1,0 +1,25 @@
+<div class="popup-body">
+    <div class="top">
+        <div class="button" role="button" (click)="newButtonClicked()">
+            <img src="assets/images/icons/add.svg">
+            New Activity
+        </div>
+    </div>
+    <div class="bottom">
+        <ul>
+            <li *ngFor="let activity of activities">
+                <span class="name">
+                    {{ activity.name }}
+                </span>
+                <div class="action-buttons">
+                    <span (click)="editButtonClicked(activity.id)">
+                        Edit
+                    </span>
+                    <span (click)="removeButtonClicked(activity.id)">
+                        Remove
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
