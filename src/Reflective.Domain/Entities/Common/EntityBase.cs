@@ -2,7 +2,7 @@ namespace Reflective.Domain.Entities.Common
 {
     public class EntityBase
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; internal set; } = Guid.NewGuid();
 
         public bool Is(EntityBase? entity)
         {
