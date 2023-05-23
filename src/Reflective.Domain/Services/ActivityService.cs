@@ -11,24 +11,5 @@ namespace Reflective.Domain.Services
         {
             _ar = ar;
         }
-
-        public async Task<Activity> CreateActivityAsync(string name, string description, CancellationToken cancellationToken = default)
-        {
-            Activity newActivity = new(name, description);
-            await _ar.SaveAsync(newActivity, cancellationToken);
-            return newActivity;
-        }
-
-        public async Task StartActivitySessionAsync(Activity activity, CancellationToken cancellationToken = default)
-        {
-            activity.StartSession();
-            await _ar.UpdateAsync(activity, cancellationToken);
-        }
-
-        public async Task EndActivitySessionAsync(Activity activity, CancellationToken cancellationToken = default)
-        {
-            activity.EndSession();
-            await _ar.UpdateAsync(activity, cancellationToken);
-        }
     }
 }
