@@ -1,4 +1,5 @@
 using Reflective.Domain;
+using Reflective.Application;
 using Reflective.Infrastructure;
 
 internal class Program
@@ -15,6 +16,7 @@ internal class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddDomainServices();
+        builder.Services.AddApplicationServices();
         builder.Services.AddInfrastructureServices(builder.Configuration.GetConnectionString("SQLiteDataSource"));
 
         var app = builder.Build();
