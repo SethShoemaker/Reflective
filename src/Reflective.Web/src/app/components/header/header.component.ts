@@ -1,4 +1,5 @@
-import { Output, EventEmitter, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,7 @@ export class HeaderComponent implements OnInit {
   time: string = "";
   mobileMenuIsVisible: boolean = true;
 
-  @Output() activitiesShowEvent = new EventEmitter();
-  @Output() plansShowEvent = new EventEmitter();
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.setTime();
@@ -35,11 +35,11 @@ export class HeaderComponent implements OnInit {
 
   emitActivitiesShow() {
     this.mobileMenuIsVisible = false;
-    this.plansShowEvent.emit();
+    this.router.navigateByUrl("/activities")
   }
 
   emitPlansShow() {
     this.mobileMenuIsVisible = false;
-    this.plansShowEvent.emit();
+    this.router.navigateByUrl("/plans")
   }
 }
