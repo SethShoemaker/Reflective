@@ -11,7 +11,7 @@ using Reflective.Infrastructure.Persistence;
 namespace Reflective.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230523025210_init")]
+    [Migration("20230524160017_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -30,7 +30,6 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
