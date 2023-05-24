@@ -1,5 +1,4 @@
 using Reflective.Domain.Entities.Common;
-using Reflective.Domain.Exceptions;
 
 namespace Reflective.Domain.Entities.ActivityAggregate
 {
@@ -33,7 +32,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
 
             if(latestVersion is null)
-                throw new CannotAdjustEndedPlanException($"cannot adjust plan, already ended");
+                throw new InvalidOperationException($"cannot adjust plan, already ended");
 
             if(latestVersion.StartDate == DateOnly.FromDateTime(DateTime.Today))
             {
@@ -63,9 +62,18 @@ namespace Reflective.Domain.Entities.ActivityAggregate
         {
             ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
 
-            if(latestVersion is null) return;
+            if(latestVersion is null)
+                throw new InvalidOperationException($"cannot end activity plan with id of \"{Id}\", activity plan is already ended");
 
             latestVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
+        }
+
+        internal void EndIfNotAlreadyEnded()
+        {
+            ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
+
+            if(latestVersion is not null)
+                latestVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
         }
     }
 }
