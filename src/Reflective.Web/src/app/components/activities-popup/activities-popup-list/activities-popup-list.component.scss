@@ -1,12 +1,18 @@
 @import '../../../../_variables.scss';
 
 div.popup-body{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto;
+    height: 100%;
 
     div.top{
         display: flex;
         justify-content: flex-end;
+
+        div.button-wrapper{
+            display: flex;
+            align-items: flex-start;
+        }
     }
 
     div.bottom{
