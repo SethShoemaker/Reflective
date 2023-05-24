@@ -31,7 +31,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             }
         }
 
-        private string _description { get; set; } = null!;
+        private string? _description { get; set; }
 
         public string? Description 
         {
@@ -40,7 +40,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             {
                 if(value == null || value.Length == 0)
                 {
-                    Description = null;
+                    _description = null;
                     return;
                 }
                     
