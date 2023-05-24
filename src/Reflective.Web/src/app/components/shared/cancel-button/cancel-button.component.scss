@@ -1,0 +1,17 @@
+@import '../../../../_variables.scss';
+
+div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: $white;
+    font-size: calc(0.6rem + 0.4vw);
+    letter-spacing: calc(0.04rem + 0.009vw);
+    cursor: pointer;
+    font-weight: 200;
+
+    img{
+        height: calc(0.35rem + 0.2vw);
+        margin: calc(0.005rem + 0.06vw) calc(0.2rem + 0.3vw) 0 0;
+    }
+}

@@ -18,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: "create",
-        title: "Create Activity",
+        title: "New Activity",
         component: ActivitiesPopupCreateComponent
       },
       {

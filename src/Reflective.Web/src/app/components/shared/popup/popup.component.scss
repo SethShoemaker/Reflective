@@ -17,7 +17,7 @@ div.popup{
     transform: translate(-50%, -50%);
     border-radius: calc(0.7rem + 0.5vw);
     overflow: hidden;
-    width: min(calc(30rem + 5vw), calc(1rem + 70vw));
+    width: min(calc(31rem + 5vw), calc(1rem + 85vw));
     color: $white;
 
     div.head{
@@ -63,6 +63,6 @@ div.popup{
 
     div.body{
         background-color: $darkBlue2;
-        padding: calc(2rem - 0.5vw);
+        padding: calc(0.8rem + 1.6vw);
     }
 }

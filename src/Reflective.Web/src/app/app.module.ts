@@ -12,6 +12,8 @@ import { ActivitiesPopupListComponent } from './components/activities-popup/acti
 import { ActivitiesPopupEditComponent } from './components/activities-popup/activities-popup-edit/activities-popup-edit.component';
 import { ActivitiesPopupRemoveConfirmationComponent } from './components/activities-popup/activities-popup-remove-confirmation/activities-popup-remove-confirmation.component';
 import { ActivitiesPopupCreateComponent } from './components/activities-popup/activities-popup-create/activities-popup-create.component';
+import { FormsModule } from '@angular/forms';
+import { CancelButtonComponent } from './components/shared/cancel-button/cancel-button.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +24,14 @@ import { ActivitiesPopupCreateComponent } from './components/activities-popup/ac
     ActivitiesPopupListComponent,
     ActivitiesPopupEditComponent,
     ActivitiesPopupRemoveConfirmationComponent,
-    ActivitiesPopupCreateComponent
+    ActivitiesPopupCreateComponent,
+    CancelButtonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },

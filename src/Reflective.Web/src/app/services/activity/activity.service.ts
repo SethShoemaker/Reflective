@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Activity } from 'src/app/models/activity.model';
@@ -12,5 +12,12 @@ export class ActivityService {
 
   getList(): Observable<Activity[]> {
     return this.http.get<Activity[]>("/activities/list");
+  }
+
+  create(name: string, description: string): Observable<HttpResponse<any>>{
+    return this.http.post<HttpResponse<any>>("/activities/create", {
+      name: name,
+      description: description
+    });
   }
 }

@@ -1,0 +1,67 @@
+@import '../_variables.scss';
+
+form.form{
+
+    div.form-control{
+        display: flex;
+        flex-direction: column;
+
+        label{
+            font-size: calc(0.6rem + 0.38vw);
+            padding: 0 0 calc(0.14rem + 0.04rem) calc(0.5rem + 0.15vw);
+            letter-spacing: calc(0.01rem + 0.02vw);
+            font-weight: 400;
+
+            span.optional{
+                font-weight: 100;
+            }
+        }
+
+        input,
+        select,
+        textarea{
+            border: calc(0.04rem + 0.05vw) solid $grey1;
+            background-color: $darkBlue1;
+            border-radius: calc(0.3rem + 0.15vw);
+            outline: none;
+            color: $white;
+            font-weight: 200;
+            transition-property: border-color;
+            transition-duration: 0.2s;
+
+            &.invalid{
+                border-color: $red1;
+            }
+        }
+
+        input,
+        select{
+            height: min(calc(2.6rem + 0.2vw), calc(0.5rem + 6vw));
+            display: flex;
+            align-items: center;
+            font-size: calc(0.7rem + 0.4vw);
+            padding: 0 calc(0.5rem + 0.15vw);
+
+        }
+
+        textarea{
+            overflow-y: scroll;
+            padding: calc(0.5rem + 0.15vw);
+            font-size: calc(0.7rem + 0.2vw);
+            resize: none;
+        }
+
+        span.feedback{
+            font-size: calc(0.62rem + 0.32vw);
+            padding: calc(0.2rem + 0.05vw) 0 0 calc(0.5rem + 0.15vw);
+            font-weight: 200;
+            transition-property: opacity;
+            transition-duration: 0.05s;
+            color: $red1;
+
+            &.hidden{
+                opacity: 0;
+            }
+        }
+    }
+}
