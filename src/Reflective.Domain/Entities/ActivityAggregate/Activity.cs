@@ -14,9 +14,11 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             TrackingPeriodStart = DateOnly.FromDateTime(DateTime.Today);
         }
 
+        private string _name { get; set; } = null!;
+
         public string Name 
         {
-            get => Name;
+            get => _name;
             set 
             {
                 if(value.Length > 10)
@@ -25,13 +27,15 @@ namespace Reflective.Domain.Entities.ActivityAggregate
                 if(value.Length == 0)
                     throw new ValidationException("Activity name cannot be empty");
 
-                Name = value;
+                _name = value;
             }
         }
 
+        private string _description { get; set; } = null!;
+
         public string? Description 
         {
-            get => Description;
+            get => _description;
             set 
             {
                 if(value == null || value.Length == 0)
@@ -43,7 +47,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
                 if(value.Length > 55)
                     throw new ValidationException("Activity description cannot be longer than 55 characters");
 
-                Description = value;
+                _description = value;
             }
         }
 
