@@ -12,5 +12,12 @@ namespace Reflective.Api.Controllers
         {
             return await _mediator.Send(new ListActivitiesRequest());
         }
+
+        [Route("create")]
+        [HttpPost]
+        public async Task<Guid> Create(CreateActivityRequest request)
+        {
+            return await _mediator.Send(request);
+        }
     }
 }
