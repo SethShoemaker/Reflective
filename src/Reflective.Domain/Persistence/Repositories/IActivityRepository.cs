@@ -8,6 +8,6 @@ namespace Reflective.Domain.Persistence.Repositories
 
         public Task UpdateAsync(Activity activity, CancellationToken cancellationToken = default);
 
-        public Task<List<Activity>> GetAll(CancellationToken cancellationToken = default);
+        public Task<List<Activity>> GetAllAsync(CancellationToken cancellationToken = default);
     }
 }

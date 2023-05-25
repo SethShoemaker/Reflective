@@ -15,7 +15,7 @@ namespace Reflective.Application.Features.Activities
 
         public async Task<List<ActivityDto>> Handle(ListActivitiesRequest request, CancellationToken cancellationToken)
         {
-            List<Activity> activities = await _activityRepo.GetAll(cancellationToken);
+            List<Activity> activities = await _activityRepo.GetAllAsync(cancellationToken);
 
             return activities.Select(a => new ActivityDto
             {

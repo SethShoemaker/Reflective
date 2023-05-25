@@ -8,7 +8,7 @@ namespace Reflective.Infrastructure.Persistence.Repositories
     {
         public ActivityRepository(AppDbContext context) : base(context){}
 
-        public async Task<List<Activity>> GetAll(CancellationToken cancellationToken = default)
+        public async Task<List<Activity>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await _context.Activities.ToListAsync(cancellationToken);
         }
