@@ -6,9 +6,11 @@
             name="name" 
             id="name" 
             placeholder="Enter Name"
-            [ngClass]="{'invalid' : !nameIsValid}"
+            [ngClass]="{'invalid' : nameIsInvalid}"
         >
-        <span class="feedback" [ngClass]="{'hidden' : nameIsValid}">Name must be 1-10 characters</span>
+        <span class="feedback" 
+            [ngClass]="{'hidden' : !nameIsInvalid}"
+        >Name must be 1-10 characters</span>
     </div>
     <div class="form-control">
         <label for="description">
@@ -19,9 +21,11 @@
             name="description" 
             id="description" 
             placeholder="Enter Description"
-            [ngClass]="{'invalid' : !descriptionIsValid}"
+            [ngClass]="{'invalid' : descriptionIsInvalid}"
         ></textarea>
-        <span class="feedback" [ngClass]="{'hidden' : descriptionIsValid}">Description must be 0-55 characters</span>
+        <span class="feedback" 
+            [ngClass]="{'hidden' : !descriptionIsInvalid}"
+        >Description must be 0-55 characters</span>
     </div>
     <div class="buttons">
         <app-cancel-button (click)="cancel()"></app-cancel-button>

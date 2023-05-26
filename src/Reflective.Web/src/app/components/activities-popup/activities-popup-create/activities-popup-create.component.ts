@@ -9,9 +9,9 @@ import { ActivityService } from 'src/app/services/activity/activity.service';
 })
 export class ActivitiesPopupCreateComponent implements OnInit {
   name: string = "";
-  nameIsValid: boolean = true;
+  nameIsInvalid: boolean = false;
   description: string = "";
-  descriptionIsValid: boolean = true;
+  descriptionIsInvalid: boolean = false;
 
   constructor(
     private router: Router,
@@ -25,13 +25,18 @@ export class ActivitiesPopupCreateComponent implements OnInit {
   }
 
   submit() {
+    this.name = this.name.trim();
+    this.nameIsInvalid = false;
+    this.description = this.description.trim();
+    this.descriptionIsInvalid = false;
+
     if (this.name.length == 0 || this.name.length > 10)
-      this.nameIsValid = false;
+      this.nameIsInvalid = true;
 
     if (this.description.length > 55)
-      this.descriptionIsValid = false;
+      this.descriptionIsInvalid = true;
 
-    if (!this.nameIsValid || !this.descriptionIsValid)
+    if (this.nameIsInvalid || this.descriptionIsInvalid)
       return;
     
     const observer = {
