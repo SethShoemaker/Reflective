@@ -21,6 +21,11 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             get => _name;
             set 
             {
+                if(string.IsNullOrWhiteSpace(value))
+                    throw new ValidationException("Activity name cannot be white space");
+
+                value = value.Trim();
+
                 if(value.Length > 10)
                     throw new ValidationException("Activity name cannot be longer than 10 characters");
 
@@ -38,12 +43,14 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             get => _description;
             set 
             {
-                if(value == null || value.Length == 0)
+                if(string.IsNullOrWhiteSpace(value) || value.Length == 0)
                 {
                     _description = null;
                     return;
                 }
-                    
+
+                value = value.Trim();
+
                 if(value.Length > 55)
                     throw new ValidationException("Activity description cannot be longer than 55 characters");
 
