@@ -24,9 +24,13 @@ namespace Reflective.Api.Filters
         public override void OnException(ExceptionContext context)
         {
             Type type = context.Exception.GetType();
+
             if (_exceptionHandlers.ContainsKey(type))
             {
                 _exceptionHandlers[type].Invoke(context);
+
+                context.ExceptionHandled = true;
+
                 return;
             }
 
@@ -38,8 +42,6 @@ namespace Reflective.Api.Filters
             var exception = (ValidationException)context.Exception;
 
             context.Result = new BadRequestObjectResult(exception.Message);
-
-            context.ExceptionHandled = true;
         }
 
         private void HandlerInvalidOperationException(ExceptionContext context)
@@ -47,8 +49,6 @@ namespace Reflective.Api.Filters
             var exception = (InvalidOperationException)context.Exception;
 
             context.Result = new BadRequestObjectResult(exception.Message);
-
-            context.ExceptionHandled = true;
         }
     }
 }
