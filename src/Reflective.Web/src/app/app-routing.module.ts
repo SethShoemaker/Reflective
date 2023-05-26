@@ -5,6 +5,7 @@ import { ActivitiesPopupListComponent } from './components/activities-popup/acti
 import { ActivitiesPopupCreateComponent } from './components/activities-popup/activities-popup-create/activities-popup-create.component';
 import { ActivitiesPopupEditComponent } from './components/activities-popup/activities-popup-edit/activities-popup-edit.component';
 import { ActivitiesPopupRemoveConfirmationComponent } from './components/activities-popup/activities-popup-remove-confirmation/activities-popup-remove-confirmation.component';
+import { NetworkErrorPopupComponent } from './components/network-error-popup/network-error-popup.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
         component: ActivitiesPopupRemoveConfirmationComponent
       }
     ]
+  },
+  {
+    path: "network-error",
+    title: "Network Error",
+    component: NetworkErrorPopupComponent,
   }
 ];
 

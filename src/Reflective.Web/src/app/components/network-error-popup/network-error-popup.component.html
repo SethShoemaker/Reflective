@@ -1,0 +1,6 @@
+<app-popup [title]="title" *ngIf="popupIsVisible">
+    <p class="p">Lost connection to the server. Check the network status of the server and your device.</p>
+    <div class="bottom">
+        <div class="button" role="button" (click)="retry()">Retry Connection</div>
+    </div>
+</app-popup>

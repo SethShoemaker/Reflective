@@ -14,6 +14,7 @@ import { ActivitiesPopupRemoveConfirmationComponent } from './components/activit
 import { ActivitiesPopupCreateComponent } from './components/activities-popup/activities-popup-create/activities-popup-create.component';
 import { FormsModule } from '@angular/forms';
 import { CancelButtonComponent } from './components/shared/cancel-button/cancel-button.component';
+import { NetworkErrorPopupComponent } from './components/network-error-popup/network-error-popup.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CancelButtonComponent } from './components/shared/cancel-button/cancel-
     ActivitiesPopupEditComponent,
     ActivitiesPopupRemoveConfirmationComponent,
     ActivitiesPopupCreateComponent,
-    CancelButtonComponent
+    CancelButtonComponent,
+    NetworkErrorPopupComponent
   ],
   imports: [
     BrowserModule,
