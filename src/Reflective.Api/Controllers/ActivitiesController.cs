@@ -19,5 +19,22 @@ namespace Reflective.Api.Controllers
         {
             return await _mediator.Send(request);
         }
+
+        [Route("edit/{id}")]
+        [HttpGet]
+        public async Task<GetActivityEditDataResponse> GetEdit([FromRoute] Guid id)
+        {
+            return await _mediator.Send(new GetActivityEditDataRequest(id));
+        }
+
+        [Route("edit/{id}")]
+        [HttpPost]
+        public async Task SaveEdit([FromRoute] Guid id, SaveEditRequest request)
+        {
+            await _mediator.Send(new SaveActivityEditDataRequest(id, request.name, request.description));
+            return;
+        }
+
+        public record SaveEditRequest(string name, string? description);
     }
 }
