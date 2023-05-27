@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Activity } from 'src/app/models/activity.model';
 import { ActivityService } from 'src/app/services/activity/activity.service';
@@ -17,10 +17,12 @@ export class ActivitiesPopupListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activityService.getList().subscribe(
-      res => this.activities = res,
-      err => console.log(err)
-    );
+
+    const observer = {
+      next: (res: Activity[]) => this.activities = res
+    }
+
+    this.activityService.getList().subscribe(observer);
   }
 
   newButtonClicked() {

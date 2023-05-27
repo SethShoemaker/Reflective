@@ -16,12 +16,15 @@ export class ActivitiesPopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.url.subscribe(
-      () => {
+
+    const observer = {
+      next: () => {
         this.closeButtonIsActive = this.router.url == "/activities";
         this.title = this.route.firstChild?.routeConfig?.title?.toString() ?? "";
       }
-    );
+    }
+
+    this.route.url.subscribe(observer);
   }
 
   close(): void{
