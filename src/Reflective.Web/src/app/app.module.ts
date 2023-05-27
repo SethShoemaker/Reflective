@@ -15,6 +15,7 @@ import { ActivitiesPopupCreateComponent } from './components/activities-popup/ac
 import { FormsModule } from '@angular/forms';
 import { CancelButtonComponent } from './components/shared/cancel-button/cancel-button.component';
 import { NetworkErrorPopupComponent } from './components/network-error-popup/network-error-popup.component';
+import { NetworkErrorInterceptor } from './interceptors/network-error/network-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NetworkErrorPopupComponent } from './components/network-error-popup/net
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: NetworkErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
