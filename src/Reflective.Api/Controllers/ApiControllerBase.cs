@@ -5,7 +5,7 @@ using Reflective.Api.Filters;
 namespace Reflective.Api.Controllers
 {
     [ApiController]
-    [DomainExceptionFilter]
+    [ExceptionFilter]
     public abstract class ApiControllerBase : ControllerBase
     {
         private IMediator? __mediator;

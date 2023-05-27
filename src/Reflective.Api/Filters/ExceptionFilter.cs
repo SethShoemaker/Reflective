@@ -5,19 +5,20 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace Reflective.Api.Filters
 {
     /// <summary>
-    /// will catch exceptions thrown by domain layer, and translate them into a HttpResponseException
+    /// will catch exceptions thrown by domain or application layer
     /// </summary>
-    public class DomainExceptionFilter : ExceptionFilterAttribute
+    public class ExceptionFilter : ExceptionFilterAttribute
     {
         private readonly Dictionary<Type, Action<ExceptionContext>> _exceptionHandlers;
 
-        public DomainExceptionFilter()
+        public ExceptionFilter()
         {
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
                 { typeof(ValidationException), HandleValidationException },
-                { typeof(InvalidOperationException), HandlerInvalidOperationException }
+                { typeof(InvalidOperationException), HandleInvalidOperationException },
+                { typeof(KeyNotFoundException), HandleKeyNotFoundException }
             };
         }
 
@@ -44,9 +45,16 @@ namespace Reflective.Api.Filters
             context.Result = new BadRequestObjectResult(exception.Message);
         }
 
-        private void HandlerInvalidOperationException(ExceptionContext context)
+        private void HandleInvalidOperationException(ExceptionContext context)
         {
             var exception = (InvalidOperationException)context.Exception;
+
+            context.Result = new BadRequestObjectResult(exception.Message);
+        }
+
+        private void HandleKeyNotFoundException(ExceptionContext context)
+        {
+            var exception = (KeyNotFoundException)context.Exception;
 
             context.Result = new BadRequestObjectResult(exception.Message);
         }
