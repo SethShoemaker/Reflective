@@ -14,8 +14,19 @@ export class ActivityService {
     return this.http.get<Activity[]>("/activities/list");
   }
 
-  create(name: string, description: string): Observable<HttpResponse<any>>{
+  create(name: string, description: string | null): Observable<HttpResponse<any>>{
     return this.http.post<HttpResponse<any>>("/activities/create", {
+      name: name,
+      description: description
+    });
+  }
+
+  getNameAndDescriptionById(id: string) : Observable<Activity> {
+    return this.http.get<Activity>(`/activities/edit/${id}`);
+  }
+
+  saveNameAndDescriptionById(id: string, name: string, description: string | null) {
+    return this.http.post<HttpResponse<any>>(`/activities/edit/${id}`, {
       name: name,
       description: description
     });

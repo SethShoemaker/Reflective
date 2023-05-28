@@ -1,1 +1,36 @@
-<p>activities-popup-edit works!</p>
+<form class="form">
+    <div class="form-control">
+        <label for="name">Name</label>
+        <input type="text" 
+            [(ngModel)]="name" 
+            name="name" 
+            id="name" 
+            placeholder="Enter Name"
+            [ngClass]="{'invalid' : nameIsInvalid}"
+        >
+        <span class="feedback" 
+            [ngClass]="{'hidden' : !nameIsInvalid}"
+        >Name must be 1-10 characters</span>
+    </div>
+    <div class="form-control">
+        <label for="description">
+            Description 
+            <span class="optional">(optional)</span>
+        </label>
+        <textarea [(ngModel)]="description" 
+            name="description" 
+            id="description" 
+            placeholder="Enter Description"
+            [ngClass]="{'invalid' : descriptionIsInvalid}"
+        ></textarea>
+        <span class="feedback" 
+            [ngClass]="{'hidden' : !descriptionIsInvalid}"
+        >Description must be 0-55 characters</span>
+    </div>
+    <div class="buttons">
+        <app-cancel-button (click)="cancel()"></app-cancel-button>
+        <div class="button" (click)="submit()">
+            Save Changes
+        </div>
+    </div>
+</form>
