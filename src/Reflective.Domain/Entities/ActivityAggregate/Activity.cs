@@ -113,13 +113,13 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             get => _activityPlans.AsReadOnly();
         }
 
-        public void CreatePlan(TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        public void CreatePlan(TimeOnly timeOfDay, TimeSpan duration, DayOfWeek[] daysOfWeek)
         {
             ActivityPlan activityPlan = new(this, timeOfDay, duration, daysOfWeek);
             _activityPlans.Add(activityPlan);
         }
 
-        public void AdjustPlan(Guid planId, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        public void AdjustPlan(Guid planId, TimeOnly timeOfDay, TimeSpan duration, DayOfWeek[] daysOfWeek)
         {
             if(IsNoLongerBeingTracked())
                 throw new InvalidOperationException($"cannot adjust activity plan for \"{Name}\", activity is no longer being tracked");

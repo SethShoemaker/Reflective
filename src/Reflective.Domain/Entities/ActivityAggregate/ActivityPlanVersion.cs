@@ -14,6 +14,6 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
         public TimeSpan Duration { get; internal set; }
 
-        public SortedSet<DayOfWeek> DaysOfWeek { get; internal set; } = new();
+        public DayOfWeek[] DaysOfWeek { get; internal set; } = null!;
     }
 }

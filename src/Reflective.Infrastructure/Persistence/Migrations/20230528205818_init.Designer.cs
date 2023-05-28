@@ -11,7 +11,7 @@ using Reflective.Infrastructure.Persistence;
 namespace Reflective.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230524160017_init")]
+    [Migration("20230528205818_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -36,11 +36,65 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateOnly?>("TrackingPeriodEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("TrackingPeriodStart")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ActiveSessionId");
 
                     b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlan", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ActivityId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.ToTable("ActivityPlan");
+                });
+
+            modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlanVersion", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ActivityPlanId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DaysOfWeek")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan>("Duration")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly?>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeOnly>("TimeOfDay")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityPlanId");
+
+                    b.ToTable("ActivityPlanVersion");
                 });
 
             modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivitySession", b =>
@@ -74,6 +128,28 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                     b.Navigation("ActiveSession");
                 });
 
+            modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlan", b =>
+                {
+                    b.HasOne("Reflective.Domain.Entities.ActivityAggregate.Activity", "Activity")
+                        .WithMany("ActivityPlans")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Activity");
+                });
+
+            modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlanVersion", b =>
+                {
+                    b.HasOne("Reflective.Domain.Entities.ActivityAggregate.ActivityPlan", "ActivityPlan")
+                        .WithMany("Versions")
+                        .HasForeignKey("ActivityPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ActivityPlan");
+                });
+
             modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivitySession", b =>
                 {
                     b.HasOne("Reflective.Domain.Entities.ActivityAggregate.Activity", "Activity")
@@ -87,7 +163,14 @@ namespace Reflective.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.Activity", b =>
                 {
+                    b.Navigation("ActivityPlans");
+
                     b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlan", b =>
+                {
+                    b.Navigation("Versions");
                 });
 #pragma warning restore 612, 618
         }

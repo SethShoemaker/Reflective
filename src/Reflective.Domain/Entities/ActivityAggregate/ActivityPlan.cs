@@ -6,7 +6,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
     {
         private ActivityPlan(){}
 
-        internal ActivityPlan(Activity activity, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        internal ActivityPlan(Activity activity, TimeOnly timeOfDay, TimeSpan duration, DayOfWeek[] daysOfWeek)
         {
             Activity = activity;
 
@@ -29,7 +29,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             get => _versions.AsReadOnly();
         }
 
-        internal void Adjust(TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        internal void Adjust(TimeOnly timeOfDay, TimeSpan duration, DayOfWeek[] daysOfWeek)
         {
             ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
 
