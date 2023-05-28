@@ -66,7 +66,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
         public void StopTracking()
         {
-            TrackingPeriodEnd = DateOnly.FromDateTime(DateTime.Today);
+            TrackingPeriodEnd = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
 
             foreach(ActivityPlan activityPlan in ActivityPlans)
                 activityPlan.EndIfNotAlreadyEnded();
