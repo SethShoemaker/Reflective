@@ -12,10 +12,10 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             Start = DateTime.Now;
         }
 
-        public Activity Activity { get; set; } = null!;
+        public Activity Activity { get; private set; } = null!;
 
-        public DateTime Start { get; set; }
+        public DateTime Start { get; internal set; }
 
-        public DateTime? End { get; set; }
+        public DateTime? End { get; internal set; }
     }
 }

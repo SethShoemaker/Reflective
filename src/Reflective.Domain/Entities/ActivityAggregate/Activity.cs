@@ -58,9 +58,9 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             }
         }
 
-        private DateOnly TrackingPeriodStart { get; set; }
+        public DateOnly TrackingPeriodStart { get; private set; }
 
-        private DateOnly? TrackingPeriodEnd { get; set; }
+        public DateOnly? TrackingPeriodEnd { get; private set; }
 
         public bool IsNoLongerBeingTracked() => TrackingPeriodEnd != null;
 
@@ -72,7 +72,12 @@ namespace Reflective.Domain.Entities.ActivityAggregate
                 activityPlan.EndIfNotAlreadyEnded();
         }
 
-        public List<ActivitySession> Sessions { get; private set; } = new();
+        private List<ActivitySession> _sessions { get; set; } = new();
+
+        public IReadOnlyList<ActivitySession> Sessions 
+        {
+            get => _sessions.AsReadOnly();
+        }
 
         public ActivitySession? ActiveSession { get; private set; }
 
@@ -86,7 +91,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
             ActivitySession newSession = new(this);
             ActiveSession = newSession;
-            Sessions.Add(newSession);
+            _sessions.Add(newSession);
         }
 
         public void EndSession()
@@ -101,12 +106,17 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             ActiveSession = null;
         }
 
-        private List<ActivityPlan> ActivityPlans { get; set; } = new();
+        private List<ActivityPlan> _activityPlans { get; set; } = new();
 
-        public void CreatePlan(string name, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        public IReadOnlyList<ActivityPlan> ActivityPlans
         {
-            ActivityPlan activityPlan = new(name, this, timeOfDay, duration, daysOfWeek);
-            ActivityPlans.Add(activityPlan);
+            get => _activityPlans.AsReadOnly();
+        }
+
+        public void CreatePlan(TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        {
+            ActivityPlan activityPlan = new(this, timeOfDay, duration, daysOfWeek);
+            _activityPlans.Add(activityPlan);
         }
 
         public void AdjustPlan(Guid planId, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
@@ -114,7 +124,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             if(IsNoLongerBeingTracked())
                 throw new InvalidOperationException($"cannot adjust activity plan for \"{Name}\", activity is no longer being tracked");
 
-            ActivityPlan? plan = ActivityPlans.FirstOrDefault(ap => ap.Id == planId);
+            ActivityPlan? plan = _activityPlans.FirstOrDefault(ap => ap.Id == planId);
             if(plan is null)
                 throw new KeyNotFoundException($"ActivityPlan with id of \"{planId}\" doesn't exist for \"{Name}\"");
 
@@ -126,7 +136,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             if(IsNoLongerBeingTracked())
                 throw new InvalidOperationException($"cannot end activity plan for \"{Name}\", activity is no longer being tracked");
 
-            ActivityPlan? plan = ActivityPlans.FirstOrDefault(ap => ap.Id == planId);
+            ActivityPlan? plan = _activityPlans.FirstOrDefault(ap => ap.Id == planId);
             if(plan is null)
                 throw new KeyNotFoundException($"ActivityPlan with id of \"${planId}\" doesn't exist for \"{Name}\"");
 

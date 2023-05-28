@@ -6,12 +6,11 @@ namespace Reflective.Domain.Entities.ActivityAggregate
     {
         private ActivityPlan(){}
 
-        internal ActivityPlan(string name, Activity activity, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
+        internal ActivityPlan(Activity activity, TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
         {
-            Name = name;
             Activity = activity;
 
-            Versions.Add(new(){
+            _versions.Add(new(){
                 ActivityPlan = this,
                 StartDate = DateOnly.FromDateTime(DateTime.Now),
                 EndDate = null,
@@ -21,11 +20,14 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             });
         }
 
-        public string Name { get; set; } = null!;
+        public Activity Activity { get; private set; } = null!;
 
-        public Activity Activity { get; set; } = null!;
+        private List<ActivityPlanVersion> _versions { get; set; } = new();
 
-        public List<ActivityPlanVersion> Versions { get; set; } = new();
+        public IReadOnlyList<ActivityPlanVersion> Versions 
+        {
+            get => _versions.AsReadOnly();
+        }
 
         internal void Adjust(TimeOnly timeOfDay, TimeSpan duration, SortedSet<DayOfWeek> daysOfWeek)
         {
@@ -54,7 +56,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
                     DaysOfWeek = daysOfWeek
                 };
 
-                Versions.Add(newVersion);
+                _versions.Add(newVersion);
             }
         }
 
