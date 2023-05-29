@@ -39,5 +39,13 @@ namespace Reflective.Infrastructure.Persistence.Repositories
                 .Select(a => new Tuple<string, string?>(a.Name, a.Description))
                 .FirstOrDefaultAsync(cancellationToken);
         }
+
+        public async Task<string?> GetNameByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await _context.Activities
+                .Where(a => a.Id == id)
+                .Select(a => a.Name)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

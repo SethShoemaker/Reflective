@@ -36,5 +36,20 @@ namespace Reflective.Api.Controllers
         }
 
         public record SaveEditRequest(string name, string? description);
+
+        [Route("get-name/{id}")]
+        [HttpGet]
+        public async Task<string> GetName([FromRoute] Guid id)
+        {
+            return await _mediator.Send(new GetActivityNameRequest(id));
+        }
+
+        [Route("remove/{id}")]
+        [HttpGet]
+        public async Task RemoveActivity([FromRoute] Guid id)
+        {
+            await _mediator.Send(new RemoveActivityRequest(id));
+            return;
+        }
     }
 }
