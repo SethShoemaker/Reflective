@@ -64,7 +64,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
         public bool IsNoLongerBeingTracked() => TrackingPeriodEnd != null;
 
-        public void StopTracking()
+        internal void StopTracking()
         {
             _sessions.RemoveAll(s => s.Start >= DateTime.Today);
 

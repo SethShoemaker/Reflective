@@ -47,5 +47,12 @@ namespace Reflective.Infrastructure.Persistence.Repositories
                 .Select(a => a.Name)
                 .FirstOrDefaultAsync(cancellationToken);
         }
+
+        public async Task RemoveAsync(Activity activity, CancellationToken cancellationToken = default)
+        {
+            _context.Activities.Remove(activity);
+
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }
