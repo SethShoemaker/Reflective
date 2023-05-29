@@ -39,7 +39,7 @@ namespace Reflective.Api.Controllers
 
         [Route("get-name/{id}")]
         [HttpGet]
-        public async Task<string> GetName([FromRoute] Guid id)
+        public async Task<GetActivityNameResponse> GetName([FromRoute] Guid id)
         {
             return await _mediator.Send(new GetActivityNameRequest(id));
         }
