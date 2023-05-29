@@ -4,16 +4,16 @@ using Reflective.Domain.Persistence.Repositories;
 
 namespace Reflective.Application.Features.Activities
 {
-    public class RemoveActivityHandler : IRequestHandler<RemoveActivityRequest>
+    public class StopTrackingActivityHandler : IRequestHandler<StopTrackingActivityRequest>
     {
         private readonly IActivityRepository _ar;
 
-        public RemoveActivityHandler(IActivityRepository ar)
+        public StopTrackingActivityHandler(IActivityRepository ar)
         {
             _ar = ar;
         }
 
-        public async Task Handle(RemoveActivityRequest request, CancellationToken cancellationToken)
+        public async Task Handle(StopTrackingActivityRequest request, CancellationToken cancellationToken)
         {
             Activity? activity = await _ar.GetByIdAsync(request.id, cancellationToken);
 
@@ -26,5 +26,5 @@ namespace Reflective.Application.Features.Activities
         }
     }
 
-    public record RemoveActivityRequest(Guid id) : IRequest;
+    public record StopTrackingActivityRequest(Guid id) : IRequest;
 }

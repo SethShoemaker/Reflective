@@ -44,11 +44,11 @@ namespace Reflective.Api.Controllers
             return await _mediator.Send(new GetActivityNameRequest(id));
         }
 
-        [Route("remove/{id}")]
+        [Route("stop-tracking/{id}")]
         [HttpGet]
-        public async Task RemoveActivity([FromRoute] Guid id)
+        public async Task StopTracking([FromRoute] Guid id)
         {
-            await _mediator.Send(new RemoveActivityRequest(id));
+            await _mediator.Send(new StopTrackingActivityRequest(id));
             return;
         }
     }
