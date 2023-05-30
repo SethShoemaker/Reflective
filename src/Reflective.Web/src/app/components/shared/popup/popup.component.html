@@ -1,13 +1,17 @@
 <div id="backdrop"></div>
 <div class="popup">
     <div class="head">
-        <div class="left">
-            {{ title }}
+        <div class="wrapper wrapper-left">
+            <div class="content-left">
+                {{ title }}
+            </div>
         </div>
-        <div class="right">
-            <div (click)="close.emit()" role="button" *ngIf="closeButtonIsActive">
-                <span>Close</span>
-                <img src="assets/images/icons/exit.svg">
+        <div class="wrapper wrapper-right">
+            <div class="content-right">
+                <div (click)="close.emit()" role="button" *ngIf="closeButtonIsActive">
+                    <span>Close</span>
+                    <img src="assets/images/icons/exit.svg">
+                </div>
             </div>
         </div>
     </div>
