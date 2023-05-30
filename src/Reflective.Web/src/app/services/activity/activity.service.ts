@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Activity } from 'src/app/models/activity.model';
 
 @Injectable({
@@ -30,5 +30,14 @@ export class ActivityService {
       name: name,
       description: description
     });
+  }
+
+  getNameById(id: string): Observable<string | null>{
+    return this.http.get<{ name: string | null; }>(`/activities/get-name/${id}`)
+      .pipe(map(res => res.name));
+  }
+
+  stopTrackingById(id: string): Observable<any>{
+    return this.http.get(`/activities/stop-tracking/${id}`);
   }
 }

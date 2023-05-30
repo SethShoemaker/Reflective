@@ -1,1 +1,14 @@
-<p>activities-popup-remove-confirmation works!</p>
+<p class="p">
+    <strong>Are you sure you want to remove “{{ activityName }}”?</strong>
+</p>
+<p class="p">
+    Note: removing this activity will not delete data from previous days.
+</p>
+<div class="buttons">
+    <div class="button button-red" role="button" (click)="remove()">
+        Remove
+    </div>
+    <div class="button" role="button" (click)="cancel()">
+        Keep
+    </div>
+</div>
