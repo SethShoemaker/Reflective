@@ -2,7 +2,7 @@
 
 div.popup-body{
     display: grid;
-    grid-template-rows: auto;
+    grid-template-rows: calc(2rem + 1vw) 1fr;
     height: 100%;
 
     div.top{
