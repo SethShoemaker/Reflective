@@ -56,5 +56,14 @@ namespace Reflective.Infrastructure.Persistence.Repositories
 
             await _context.SaveChangesAsync(cancellationToken);
         }
+
+        public async Task<IReadOnlyList<ActivityPlan>> GetAllActiveActivityPlansAsync(CancellationToken cancellationToken = default)
+        {
+            List<ActivityPlan> activityPlans = await _context.ActivityPlans
+                .Where(ap => ap.Versions.FirstOrDefault(v => v.EndDate == null) != null)
+                .ToListAsync(cancellationToken);
+
+            return activityPlans.AsReadOnly();
+        }
     }
 }

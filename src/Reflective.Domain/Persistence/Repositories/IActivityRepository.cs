@@ -17,5 +17,7 @@ namespace Reflective.Domain.Persistence.Repositories
         public Task<string?> GetNameByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
         public Task RemoveAsync(Activity activity, CancellationToken cancellationToken = default);
+
+        public Task<IReadOnlyList<ActivityPlan>> GetAllActiveActivityPlansAsync(CancellationToken cancellationToken = default);
     }
 }

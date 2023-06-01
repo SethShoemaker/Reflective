@@ -14,6 +14,11 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
         public TimeOnly EndTime { get; internal set; }
 
+        public TimeSpan Duration
+        {
+            get => EndTime - StartTime;
+        }
+
         public DayOfWeek[] DaysOfWeek { get; internal set; } = null!;
     }
 }
