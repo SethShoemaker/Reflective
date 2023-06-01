@@ -8,9 +8,11 @@ namespace Reflective.Infrastructure.Persistence.Repositories
     {
         public ActivityRepository(AppDbContext context) : base(context){}
 
-        public async Task<List<Activity>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<List<Activity>> GetAllThatAreBeingTrackedAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.Activities.ToListAsync(cancellationToken);
+            return await _context.Activities
+                .Where(a => a.TrackingPeriodEnd == null)
+                .ToListAsync(cancellationToken);
         }
 
         public async Task SaveAsync(Activity activity, CancellationToken cancellationToken = default)
