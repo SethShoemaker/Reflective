@@ -11,7 +11,7 @@ using Reflective.Infrastructure.Persistence;
 namespace Reflective.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230601143937_init")]
+    [Migration("20230601154706_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -78,16 +78,16 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<TimeSpan>("Duration")
+                    b.Property<DateOnly?>("EndDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateOnly?>("EndDate")
+                    b.Property<TimeOnly>("EndTime")
                         .HasColumnType("TEXT");
 
                     b.Property<DateOnly>("StartDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<TimeOnly>("TimeOfDay")
+                    b.Property<TimeOnly>("StartTime")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

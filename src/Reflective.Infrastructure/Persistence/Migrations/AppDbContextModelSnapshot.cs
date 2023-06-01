@@ -75,16 +75,16 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<TimeSpan>("Duration")
+                    b.Property<DateOnly?>("EndDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateOnly?>("EndDate")
+                    b.Property<TimeOnly>("EndTime")
                         .HasColumnType("TEXT");
 
                     b.Property<DateOnly>("StartDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<TimeOnly>("TimeOfDay")
+                    b.Property<TimeOnly>("StartTime")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

@@ -10,9 +10,9 @@ namespace Reflective.Domain.Entities.ActivityAggregate
         
         public DateOnly? EndDate { get; internal set; }
 
-        public TimeOnly TimeOfDay { get; internal set; }
+        public TimeOnly StartTime { get; internal set; }
 
-        public TimeSpan Duration { get; internal set; }
+        public TimeOnly EndTime { get; internal set; }
 
         public DayOfWeek[] DaysOfWeek { get; internal set; } = null!;
     }

@@ -6,7 +6,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
     {
         private ActivityPlan(){}
 
-        internal ActivityPlan(Activity activity, TimeOnly timeOfDay, TimeSpan duration, DayOfWeek[] daysOfWeek)
+        internal ActivityPlan(Activity activity, TimeOnly startTime, TimeOnly endTime, DayOfWeek[] daysOfWeek)
         {
             Activity = activity;
 
@@ -14,8 +14,8 @@ namespace Reflective.Domain.Entities.ActivityAggregate
                 ActivityPlan = this,
                 StartDate = DateOnly.FromDateTime(DateTime.Now),
                 EndDate = null,
-                TimeOfDay = timeOfDay,
-                Duration = duration,
+                StartTime = startTime,
+                EndTime = endTime,
                 DaysOfWeek = daysOfWeek
             });
         }
@@ -29,30 +29,33 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             get => _versions.AsReadOnly();
         }
 
-        internal void Adjust(TimeOnly timeOfDay, TimeSpan duration, DayOfWeek[] daysOfWeek)
+        public ActivityPlanVersion? ActiveVersion
         {
-            ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
+            get => _versions.FirstOrDefault(v => v.EndDate is null);
+        }
 
-            if(latestVersion is null)
+        internal void Adjust(TimeOnly startTime, TimeOnly endTime, DayOfWeek[] daysOfWeek)
+        {
+            if(ActiveVersion is null)
                 throw new InvalidOperationException($"cannot adjust plan, already ended");
 
-            if(latestVersion.StartDate == DateOnly.FromDateTime(DateTime.Today))
+            if(ActiveVersion.StartDate == DateOnly.FromDateTime(DateTime.Today))
             {
-                latestVersion.TimeOfDay = timeOfDay;
-                latestVersion.Duration = duration;
-                latestVersion.DaysOfWeek = daysOfWeek;
+                ActiveVersion.StartTime = startTime;
+                ActiveVersion.EndTime = endTime;
+                ActiveVersion.DaysOfWeek = daysOfWeek;
             }
             else
             {
-                latestVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
+                ActiveVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
 
                 ActivityPlanVersion newVersion = new()
                 {
                     ActivityPlan = this,
                     StartDate = DateOnly.FromDateTime(DateTime.Now),
                     EndDate = null,
-                    TimeOfDay = timeOfDay,
-                    Duration = duration,
+                    StartTime = startTime,
+                    EndTime = endTime,
                     DaysOfWeek = daysOfWeek
                 };
 
@@ -62,20 +65,16 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
         internal void End()
         {
-            ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
-
-            if(latestVersion is null)
+            if(ActiveVersion is null)
                 throw new InvalidOperationException($"cannot end activity plan with id of \"{Id}\", activity plan is already ended");
 
-            latestVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
+            ActiveVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
         }
 
         internal void EndIfNotAlreadyEnded()
         {
-            ActivityPlanVersion? latestVersion = Versions.FirstOrDefault(v => v.EndDate is null);
-
-            if(latestVersion is not null)
-                latestVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
+            if(ActiveVersion is not null)
+                ActiveVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
         }
     }
 }

@@ -73,8 +73,8 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                     ActivityPlanId = table.Column<Guid>(type: "TEXT", nullable: false),
                     StartDate = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     EndDate = table.Column<DateOnly>(type: "TEXT", nullable: true),
-                    TimeOfDay = table.Column<TimeOnly>(type: "TEXT", nullable: false),
-                    Duration = table.Column<TimeSpan>(type: "TEXT", nullable: false),
+                    StartTime = table.Column<TimeOnly>(type: "TEXT", nullable: false),
+                    EndTime = table.Column<TimeOnly>(type: "TEXT", nullable: false),
                     DaysOfWeek = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
