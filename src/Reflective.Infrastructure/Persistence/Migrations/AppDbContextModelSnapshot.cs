@@ -59,7 +59,7 @@ namespace Reflective.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("ActivityPlan");
+                    b.ToTable("ActivityPlans");
                 });
 
             modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlanVersion", b =>

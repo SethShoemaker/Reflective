@@ -28,7 +28,7 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActivityPlan",
+                name: "ActivityPlans",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -36,9 +36,9 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivityPlan", x => x.Id);
+                    table.PrimaryKey("PK_ActivityPlans", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ActivityPlan_Activities_ActivityId",
+                        name: "FK_ActivityPlans_Activities_ActivityId",
                         column: x => x.ActivityId,
                         principalTable: "Activities",
                         principalColumn: "Id",
@@ -81,9 +81,9 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_ActivityPlanVersion", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ActivityPlanVersion_ActivityPlan_ActivityPlanId",
+                        name: "FK_ActivityPlanVersion_ActivityPlans_ActivityPlanId",
                         column: x => x.ActivityPlanId,
-                        principalTable: "ActivityPlan",
+                        principalTable: "ActivityPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -94,8 +94,8 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                 column: "ActiveSessionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityPlan_ActivityId",
-                table: "ActivityPlan",
+                name: "IX_ActivityPlans_ActivityId",
+                table: "ActivityPlans",
                 column: "ActivityId");
 
             migrationBuilder.CreateIndex(
@@ -127,7 +127,7 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                 name: "ActivityPlanVersion");
 
             migrationBuilder.DropTable(
-                name: "ActivityPlan");
+                name: "ActivityPlans");
 
             migrationBuilder.DropTable(
                 name: "ActivitySession");

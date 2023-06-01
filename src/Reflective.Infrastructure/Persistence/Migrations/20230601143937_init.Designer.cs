@@ -11,7 +11,7 @@ using Reflective.Infrastructure.Persistence;
 namespace Reflective.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230528205818_init")]
+    [Migration("20230601143937_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -62,7 +62,7 @@ namespace Reflective.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("ActivityPlan");
+                    b.ToTable("ActivityPlans");
                 });
 
             modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlanVersion", b =>

@@ -13,6 +13,8 @@ namespace Reflective.Infrastructure.Persistence
 
         public DbSet<Activity> Activities { get; set; } = null!;
 
+        public DbSet<ActivityPlan> ActivityPlans { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Activity>().HasMany(a => a.Sessions).WithOne(a => a.Activity);
