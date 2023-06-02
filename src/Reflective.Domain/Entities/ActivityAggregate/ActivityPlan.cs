@@ -22,9 +22,9 @@ namespace Reflective.Domain.Entities.ActivityAggregate
 
         public Activity Activity { get; private set; } = null!;
 
-        private List<ActivityPlanVersion> _versions { get; set; } = new();
+        private List<ActivityPlanVersion> _versions = new();
 
-        public IReadOnlyList<ActivityPlanVersion> Versions 
+        public IReadOnlyList<ActivityPlanVersion> Versions
         {
             get => _versions.AsReadOnly();
         }

@@ -74,9 +74,9 @@ namespace Reflective.Domain.Entities.ActivityAggregate
                 activityPlan.EndIfNotAlreadyEnded();
         }
 
-        private List<ActivitySession> _sessions { get; set; } = new();
+        private List<ActivitySession> _sessions = new();
 
-        public IReadOnlyList<ActivitySession> Sessions 
+        public IReadOnlyList<ActivitySession> Sessions
         {
             get => _sessions.AsReadOnly();
         }
@@ -108,7 +108,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             ActiveSession = null;
         }
 
-        private List<ActivityPlan> _activityPlans { get; set; } = new();
+        private List<ActivityPlan> _activityPlans = new();
 
         public IReadOnlyList<ActivityPlan> ActivityPlans
         {
