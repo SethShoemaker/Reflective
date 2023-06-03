@@ -2,6 +2,10 @@
 
 form.form{
 
+    &.popup-form{
+        padding: 0 calc(0.1rem + 3.1vw);
+    }
+
     div.form-control{
         display: flex;
         flex-direction: column;
