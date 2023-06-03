@@ -12,5 +12,17 @@ namespace Reflective.Api.Controllers
         {
             return await _mediator.Send(new ListActivityPlansRequest());
         }
+
+        [Route("create")]
+        [HttpPost]
+        public async Task Create(CreateActivityPlanRequest request)
+        {
+            await _mediator.Send(new CreateActivityPlanRequest(
+                request.activityId, 
+                request.startTime, 
+                request.endTime, 
+                request.daysOfWeek
+            ));
+        }
     }
 }
