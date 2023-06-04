@@ -26,6 +26,8 @@ namespace Reflective.Infrastructure.Persistence
             modelBuilder.Entity<Activity>().Navigation(a => a.ActivityPlans).AutoInclude();
             modelBuilder.Entity<Activity>().Navigation(a => a.ActivityPlans).UsePropertyAccessMode(PropertyAccessMode.Field);
 
+            modelBuilder.Entity<ActivityPlan>().Navigation(ap => ap.Activity).AutoInclude();
+
             modelBuilder.Entity<ActivityPlan>().HasMany(ap => ap.Versions).WithOne(apv => apv.ActivityPlan);
             modelBuilder.Entity<ActivityPlan>().Navigation(ap => ap.Versions).AutoInclude();
             modelBuilder.Entity<ActivityPlan>().Navigation(ap => ap.Versions).UsePropertyAccessMode(PropertyAccessMode.Field);
