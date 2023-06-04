@@ -20,6 +20,7 @@ namespace Reflective.Application.Features.Activities.ActivityPlans
             return activityPlans.Select(a => new ActivityPlanDto
             {
                 Id = a.Id,
+                ActivityName = a.Activity.Name,
                 DaysOfWeek = a.ActiveVersion.DaysOfWeek,
                 Start = a.ActiveVersion.StartTime,
                 End = a.ActiveVersion.EndTime,
@@ -33,6 +34,8 @@ namespace Reflective.Application.Features.Activities.ActivityPlans
     public class ActivityPlanDto
     {
         public Guid Id { get; set; }
+
+        public string ActivityName { get; set; } = null!;
 
         public DayOfWeek[] DaysOfWeek { get; set; } = null!;
 
