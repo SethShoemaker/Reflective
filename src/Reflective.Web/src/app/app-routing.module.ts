@@ -6,6 +6,9 @@ import { ActivitiesPopupCreateComponent } from './components/activities-popup/ac
 import { ActivitiesPopupEditComponent } from './components/activities-popup/activities-popup-edit/activities-popup-edit.component';
 import { ActivitiesPopupRemoveConfirmationComponent } from './components/activities-popup/activities-popup-remove-confirmation/activities-popup-remove-confirmation.component';
 import { NetworkErrorPopupComponent } from './components/network-error-popup/network-error-popup.component';
+import { PlansPopupComponent } from './components/plans-popup/plans-popup.component';
+import { PlansPopupListComponent } from './components/plans-popup/plans-popup-list/plans-popup-list.component';
+import { PlansPopupCreateComponent } from './components/plans-popup/plans-popup-create/plans-popup-create.component';
 
 const routes: Routes = [
   {
@@ -32,6 +35,32 @@ const routes: Routes = [
         title: "Remove Activity",
         component: ActivitiesPopupRemoveConfirmationComponent
       }
+    ]
+  },
+  {
+    path: "plans",
+    component: PlansPopupComponent,
+    children: [
+      {
+        path: "",
+        title: "Plans",
+        component: PlansPopupListComponent
+      },
+      {
+        path: "create",
+        title: "New Plan",
+        component: PlansPopupCreateComponent
+      },
+      // {
+      //   path: "adjust/:id",
+      //   title: "Adjust Plan",
+      //   component: ActivitiesPopupCreateComponent
+      // },
+      // {
+      //   path: "end/:id",
+      //   title: "End Activity",
+      //   component: ActivitiesPopupRemoveConfirmationComponent
+      // }
     ]
   },
   {

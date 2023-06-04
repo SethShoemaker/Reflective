@@ -1,0 +1,41 @@
+<div class="popup-body">
+    <div class="top">
+        <div class="button-wrapper">
+            <div class="button" role="button" (click)="newButtonClicked()">
+                <img src="assets/images/icons/add.svg">
+                New Plan
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <ul>
+            <li *ngFor="let activityPlan of activityPlans">
+                <span class="activity-name">
+                    {{ activityPlan.activityName }}
+                </span>
+                <div class="activity-plan-details">
+                    <div class="days-of-week">
+                        <span [ngClass]="{ 'active': activityPlan.daysOfWeek.get(0) }">Sun</span>
+                        <span [ngClass]="{ 'active': activityPlan.daysOfWeek.get(1) }">Mon</span>
+                        <span [ngClass]="{ 'active': activityPlan.daysOfWeek.get(2) }">Tue</span>
+                        <span [ngClass]="{ 'active': activityPlan.daysOfWeek.get(3) }">Wed</span>
+                        <span [ngClass]="{ 'active': activityPlan.daysOfWeek.get(4) }">Thu</span>
+                        <span [ngClass]="{ 'active': activityPlan.daysOfWeek.get(5) }">Fri</span>
+                        <span [ngClass]="{ 'active': activityPlan.daysOfWeek.get(6) }">Sat</span>
+                    </div>
+                    <div class="times">
+                        {{ activityPlan.start | timeOfDay }} - {{ activityPlan.end | timeOfDay }} ({{ activityPlan.duration | duration }})
+                    </div>
+                    <div class="action-links">
+                        <span (click)="adjustButtonClicked(activityPlan.id)">
+                            Adjust Plan
+                        </span>
+                        <span (click)="endButtonClicked(activityPlan.id)">
+                            End Plan
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

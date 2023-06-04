@@ -16,6 +16,11 @@ import { FormsModule } from '@angular/forms';
 import { CancelButtonComponent } from './components/shared/cancel-button/cancel-button.component';
 import { NetworkErrorPopupComponent } from './components/network-error-popup/network-error-popup.component';
 import { NetworkErrorInterceptor } from './interceptors/network-error/network-error.interceptor';
+import { PlansPopupComponent } from './components/plans-popup/plans-popup.component';
+import { PlansPopupListComponent } from './components/plans-popup/plans-popup-list/plans-popup-list.component';
+import { PlansPopupCreateComponent } from './components/plans-popup/plans-popup-create/plans-popup-create.component';
+import { DurationPipe } from './pipes/duration/duration.pipe';
+import { TimeOfDayPipe } from './pipes/timeOfDay/time-of-day.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,12 @@ import { NetworkErrorInterceptor } from './interceptors/network-error/network-er
     ActivitiesPopupRemoveConfirmationComponent,
     ActivitiesPopupCreateComponent,
     CancelButtonComponent,
-    NetworkErrorPopupComponent
+    NetworkErrorPopupComponent,
+    PlansPopupComponent,
+    PlansPopupListComponent,
+    PlansPopupCreateComponent,
+    DurationPipe,
+    TimeOfDayPipe,
   ],
   imports: [
     BrowserModule,

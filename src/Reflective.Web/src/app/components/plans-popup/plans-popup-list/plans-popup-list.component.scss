@@ -1,0 +1,75 @@
+@import '../../../../_variables.scss';
+
+div.popup-body{
+    display: grid;
+    grid-template-rows: calc(2rem + 0.9vw) 1fr;
+    height: 100%;
+
+    div.top{
+        display: flex;
+        justify-content: flex-end;
+
+        div.button-wrapper{
+            display: flex;
+            align-items: flex-start;
+        }
+    }
+
+    div.bottom{
+        margin-top: calc(1.2rem + 0.5vw);
+        overflow-y: scroll;
+
+        ul{
+            margin: 0 calc(0.4rem + 0.2vw);
+
+            li{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 0 calc(0.6rem + 0.55vw) calc(0.3rem + 0.6vw);
+                border-bottom: calc(0.1rem) solid $grey2;
+                color: $white;
+
+                &:not(:first-of-type){
+                    padding-top: calc(0.6rem + 0.55vw);
+                }
+
+                span.activity-name{
+                    font-weight: 500;
+                    font-size: calc(1rem + 0.6vw);
+                    letter-spacing: calc(0.055rem + 0.02vw);
+                    height: calc(1.2rem + 0.85vw);
+                }
+
+                div.activity-plan-details{
+                    font-size: min(calc(0.73rem + 0.28vw), calc(4.3vw));
+                    letter-spacing: calc(0.04rem + 0.01vw);
+                    font-weight: 200;
+                    padding: calc(0.12rem + 0.36vw) 0 0 calc(0.26rem + 0.36vw);
+
+                    div.days-of-week span{
+                        color: $grey2;
+                        padding-right: calc(0.17rem + 0.67vw);
+
+                        &.active{
+                            color: $white;
+                        }
+                    }
+
+                    div.times{
+                        padding: calc(0.18rem + 0.3vw) 0;
+                    }
+
+                    div.action-links span{
+                        cursor: pointer;
+                        color: $blue;
+
+                        &:first-of-type{
+                            margin-right: calc(0.35rem + 0.5vw);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
