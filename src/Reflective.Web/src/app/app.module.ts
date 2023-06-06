@@ -20,7 +20,7 @@ import { PlansPopupComponent } from './components/plans-popup/plans-popup.compon
 import { PlansPopupListComponent } from './components/plans-popup/plans-popup-list/plans-popup-list.component';
 import { PlansPopupCreateComponent } from './components/plans-popup/plans-popup-create/plans-popup-create.component';
 import { DurationPipe } from './pipes/duration/duration.pipe';
-import { TimeOfDayPipe } from './pipes/timeOfDay/time-of-day.pipe';
+import { TimeOfDayPipe } from './pipes/time-of-day/time-of-day.pipe';
 
 @NgModule({
   declarations: [
