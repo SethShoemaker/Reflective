@@ -1,0 +1,34 @@
+<div class="form-control">
+    <label for="days-of-week">Days of Week</label>
+    <div class="days-of-week" id="days-of-week">
+        <label class="day-of-week" for="sun">
+            <input type="checkbox" name="sun" id="sun" (click)="toggleWeekDay(0)">
+            <span>Sun</span>
+        </label>
+        <label class="day-of-week" for="mon">
+            <input type="checkbox" name="mon" id="mon" (click)="toggleWeekDay(1)">
+            <span>Mon</span>
+        </label>
+        <label class="day-of-week" for="tue">
+            <input type="checkbox" name="tue" id="tue" (click)="toggleWeekDay(2)">
+            <span>Tue</span>
+        </label>
+        <label class="day-of-week" for="wed">
+            <input type="checkbox" name="wed" id="wed" (click)="toggleWeekDay(3)">
+            <span>Wed</span>
+        </label>
+        <label class="day-of-week" for="thu">
+            <input type="checkbox" name="thu" id="thu" (click)="toggleWeekDay(4)">
+            <span>Thu</span>
+        </label>
+        <label class="day-of-week" for="fri">
+            <input type="checkbox" name="fri" id="fri" (click)="toggleWeekDay(5)">
+            <span>Fri</span>
+        </label>
+        <label class="day-of-week" for="sat">
+            <input type="checkbox" name="sat" id="sat" (click)="toggleWeekDay(6)">
+            <span>Sat</span>
+        </label>
+    </div>
+    <span class="feedback hidden"></span>
+</div>

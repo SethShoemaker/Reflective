@@ -1,0 +1,32 @@
+<div class="form-control-group">
+    <div class="controls-wrapper">
+        <div class="form-control">
+            <label for="start">Start</label>
+            <input
+                [(ngModel)]="startTimeString"
+                type="time" 
+                name="start" 
+                id="start"
+                (change)="parseStartTimeString()"
+                [ngClass]="{'invalid' : !internalTimesAreValid}">
+        </div>
+        <div class="form-control">
+            <label for="end">End</label>
+            <input
+                [(ngModel)]="endTimeString"
+                type="time" 
+                name="end" 
+                id="end"
+                (change)="parseEndTimeString()"
+                [ngClass]="{'invalid' : !internalTimesAreValid}">
+        </div>
+    </div>
+    <span class="feedback" [ngClass]="{ 'hidden': internalTimesAreValid }">
+        End time must be different from start time
+    </span>
+</div>
+<div class="form-control">
+    <label for="duration">Duration</label>
+    <input type="text" name="duration" id="duration" value="{{ duration | duration }}" readonly>
+    <span class="feedback hidden"></span>
+</div>

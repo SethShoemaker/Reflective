@@ -2,13 +2,30 @@
 
 form.form{
 
-    &.popup-form{
-        padding: 0 calc(0.1rem + 3.1vw);
+    &.popup-form{ padding: 0 calc(0.1rem + 3.1vw); }
+
+    div.form-control-group{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: calc(0.8rem + 0.5vw);
+
+        div.controls-wrapper div.form-control{ margin-bottom: 0; }
+
+        div.controls-wrapper{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            div.form-control:first-of-type{ padding-right: calc(0.25rem + 0.25vw); }
+    
+            div.form-control:last-of-type{ padding-left: calc(0.25rem + 0.25vw); }
+        }
     }
 
     div.form-control{
         display: flex;
         flex-direction: column;
+        margin-bottom: calc(0.8rem + 0.5vw);
 
         label{
             font-size: calc(0.6rem + 0.38vw);
@@ -36,6 +53,10 @@ form.form{
             &.invalid{
                 border-color: $red1;
             }
+
+            &[type="time"]::-webkit-calendar-picker-indicator{
+                filter: invert(1);
+            }
         }
 
         input,
@@ -53,19 +74,27 @@ form.form{
             padding: calc(0.5rem + 0.15vw);
             font-size: calc(0.7rem + 0.2vw);
             resize: none;
+            height: calc(5.8rem - 2vw);
         }
+    }
 
-        span.feedback{
-            font-size: calc(0.62rem + 0.32vw);
-            padding: calc(0.2rem + 0.05vw) 0 0 calc(0.5rem + 0.15vw);
-            font-weight: 200;
-            transition-property: opacity;
-            transition-duration: 0.05s;
-            color: $red1;
+    span.feedback{
+        font-size: calc(0.62rem + 0.32vw);
+        padding: calc(0.2rem + 0.05vw) 0 0 calc(0.5rem + 0.15vw);
+        height: calc(1rem + 0.37vw);
+        font-weight: 200;
+        transition-property: opacity;
+        transition-duration: 0.05s;
+        color: $red1;
 
-            &.hidden{
-                opacity: 0;
-            }
-        }
+        &.hidden{ visibility: hidden; }
+    }
+
+    div.buttons{
+        margin-top: calc(0.2rem + 2vw);
+        padding-left: calc(0.3rem + 0.2vw);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }

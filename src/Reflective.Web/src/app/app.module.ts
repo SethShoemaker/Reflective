@@ -21,6 +21,8 @@ import { PlansPopupListComponent } from './components/plans-popup/plans-popup-li
 import { PlansPopupCreateComponent } from './components/plans-popup/plans-popup-create/plans-popup-create.component';
 import { DurationPipe } from './pipes/duration/duration.pipe';
 import { TimeOfDayPipe } from './pipes/time-of-day/time-of-day.pipe';
+import { DaysOfWeekInputComponent } from './components/shared/days-of-week-input/days-of-week-input.component';
+import { StartAndEndTimeInputComponent } from './components/shared/start-and-end-time-input/start-and-end-time-input.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { TimeOfDayPipe } from './pipes/time-of-day/time-of-day.pipe';
     PlansPopupCreateComponent,
     DurationPipe,
     TimeOfDayPipe,
+    DaysOfWeekInputComponent,
+    StartAndEndTimeInputComponent,
   ],
   imports: [
     BrowserModule,

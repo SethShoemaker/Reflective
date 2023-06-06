@@ -1,0 +1,41 @@
+@import '../../../../_variables.scss';
+
+div.form-control div.days-of-week{
+    padding: calc(0.09rem + 0.12vw) calc(0.06rem + 0.02vw);
+    display: flex;
+
+    @media (min-width:500px) {
+        justify-content: space-between;
+    }
+
+    @media (max-width:500px) {
+        flex-wrap: wrap;
+    }
+
+    label.day-of-week{
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        width: calc(2.7rem + 0.4vw);
+        height: min(calc(2.6rem + 0.2vw), calc(0.5rem + 6vw));
+        border: calc(0.04rem + 0.05vw) solid $grey1;
+        border-radius: calc(0.1rem + 0.1vw);
+        background-color: $darkBlue1;
+        font-size: calc(0.59rem + 0.34vw);
+        font-weight: 100;
+
+        input{ display: none; }
+
+        &:has(input:checked){
+            border-color: $blue;
+            background-color: $darkBlue3;
+        }
+
+        @media (max-width:500px) {
+            width: calc(0.6rem + 9vw);
+            margin: 0 calc(0.6rem + 0.4vw) calc(0.4rem + 0.3vw) 0;
+        }
+    }
+}
