@@ -1,22 +1,19 @@
 <form class="form popup-form">
-    <div class="form-control">
-        <label for="activityId">Activity</label>
-        <select
-            [(ngModel)]="selectedActivityId" 
-            name="activityId" 
-            id="activityId" 
-            placeholder="Select Activity">
-            <option value="activity.id" *ngFor="let activity of activities">{{ activity.name }}</option>
-        </select>
-        <span class="feedback hidden"></span>
-    </div>
+    <app-activity-select
+        (activityId)="onActivityIdChange($event)"
+        (activityIdIsInvalid)="activityIdIsInvalid"
+        [shouldDisplayFeedback]="shouldDisplayFeedback">
+    </app-activity-select>
     <app-days-of-week-input 
-        (weekDays)="weekDays">
+        (daysOfWeek)="onDaysOfWeekChange($event)"
+        (daysOfWeekAreValid)="daysOfWeekAreValid"
+        [shouldDisplayFeedback]="shouldDisplayFeedback">
     </app-days-of-week-input>
     <app-start-and-end-time-input 
-        (startTime)="startTime" 
-        (endTime)="endTime"
-        (timesAreValid)="timesAreValid">
+        (startTime)="onStartTimeChange($event)" 
+        (endTime)="onEndTimeChange($event)"
+        (timesAreValid)="timesAreValid"
+        [shouldDisplayFeedback]="shouldDisplayFeedback">
     </app-start-and-end-time-input>
     <div class="buttons">
         <app-cancel-button (click)="cancel()"></app-cancel-button>
