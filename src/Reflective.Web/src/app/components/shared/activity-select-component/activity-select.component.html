@@ -1,0 +1,15 @@
+<div class="form-control">
+    <label for="activityId">Activity</label>
+    <select
+        [(ngModel)]="internalActivityId" 
+        name="activityId" 
+        id="activityId" 
+        (ngModelChange)="onSelect()"
+        [ngClass]="{ 'invalid': feedbackIsVisible() }">
+        <option value selected hidden>Select Activity</option>
+        <option value="{{ activity.id }}" *ngFor="let activity of activities">{{ activity.name }}</option>
+    </select>
+    <span class="feedback" [ngClass]="{ 'hidden': !feedbackIsVisible() }">
+        You must select an activity
+    </span>
+</div>

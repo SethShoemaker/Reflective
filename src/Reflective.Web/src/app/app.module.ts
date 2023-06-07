@@ -23,6 +23,7 @@ import { DurationPipe } from './pipes/duration/duration.pipe';
 import { TimeOfDayPipe } from './pipes/time-of-day/time-of-day.pipe';
 import { DaysOfWeekInputComponent } from './components/shared/days-of-week-input/days-of-week-input.component';
 import { StartAndEndTimeInputComponent } from './components/shared/start-and-end-time-input/start-and-end-time-input.component';
+import { ActivitySelectComponent } from './components/shared/activity-select-component/activity-select.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { StartAndEndTimeInputComponent } from './components/shared/start-and-end
     TimeOfDayPipe,
     DaysOfWeekInputComponent,
     StartAndEndTimeInputComponent,
+    ActivitySelectComponent,
   ],
   imports: [
     BrowserModule,
