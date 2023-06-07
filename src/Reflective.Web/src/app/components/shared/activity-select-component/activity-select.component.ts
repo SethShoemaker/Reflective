@@ -13,7 +13,7 @@ export class ActivitySelectComponent implements OnInit {
   @Input() shouldDisplayFeedback: boolean = false;
 
   internalActivityId: string = "";
-  internalActivityIdIsInvalid: boolean = true;
+  internalActivityIdIsValid: boolean = false;
 
   activities: Activity[] = [];
 
@@ -29,14 +29,14 @@ export class ActivitySelectComponent implements OnInit {
   }
 
   onSelect() {
-    this.internalActivityIdIsInvalid = this.internalActivityId.length == 0;
+    this.internalActivityIdIsValid = this.internalActivityId.length > 0;
 
     this.activityId.emit(this.internalActivityId);
-    this.activityIdIsValid.emit(this.internalActivityIdIsInvalid);
+    this.activityIdIsValid.emit(this.internalActivityIdIsValid);
   }
 
   feedbackIsVisible(): boolean {
-    return this.shouldDisplayFeedback && this.internalActivityIdIsInvalid;
+    return this.shouldDisplayFeedback && !this.internalActivityIdIsValid;
   }
 
 }
