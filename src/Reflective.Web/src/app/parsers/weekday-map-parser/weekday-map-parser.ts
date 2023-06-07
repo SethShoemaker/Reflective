@@ -21,4 +21,15 @@ export class WeekDayMapParser {
 
         return weekDayMap;
     }
+
+    static ParseToNumberArray(m: WeekDayMap): number[]{
+
+        let output: number[] = [];
+
+        for (let i = 0; i < 7; i++)
+            if (m.get(i))
+                output.push(i);
+        
+        return output;
+    }
 }

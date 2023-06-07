@@ -13,7 +13,7 @@ export class PlansPopupCreateComponent implements OnInit {
   shouldDisplayFeedback: boolean = false;
 
   activityId: string = "";
-  activityIdIsInvalid: boolean = true;
+  activityIdIsValid: boolean = false;
 
   daysOfWeek: WeekDayMap = new WeekDayMap();
   daysOfWeekAreValid: boolean = false;
@@ -32,7 +32,7 @@ export class PlansPopupCreateComponent implements OnInit {
   submit() {
     this.shouldDisplayFeedback = true;
 
-    if (!this.timesAreValid || !this.daysOfWeekAreValid || this.activityIdIsInvalid) return;
+    if (!this.timesAreValid || !this.daysOfWeekAreValid || !this.activityIdIsValid) return;
 
     const observer = {
       
@@ -52,9 +52,17 @@ export class PlansPopupCreateComponent implements OnInit {
   onActivityIdChange(activityId: string) {
     this.activityId = activityId;
   }
+
+  onActivityIdIsValidChange(activityIdIsValid: boolean) {
+    this.activityIdIsValid = activityIdIsValid;
+  }
   
   onDaysOfWeekChange(daysOfWeek: WeekDayMap) {
     this.daysOfWeek = daysOfWeek;
+  }
+
+  onDaysOfWeekAreValidChange(daysOfWeekAreValid: boolean) {
+    this.daysOfWeekAreValid = daysOfWeekAreValid;
   }
 
   onStartTimeChange(startTime: Time) {
@@ -63,5 +71,9 @@ export class PlansPopupCreateComponent implements OnInit {
 
   onEndTimeChange(endTime: Time) {
     this.endTime = endTime;
+  }
+
+  onTimesAreValidChange(timesAreValid: boolean) {
+    this.timesAreValid = timesAreValid;
   }
 }

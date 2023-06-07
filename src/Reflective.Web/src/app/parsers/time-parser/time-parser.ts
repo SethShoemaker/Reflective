@@ -12,4 +12,19 @@ export class TimeParser {
 
         return time;
     }
+
+    static ParseTo24HourString(t: Time): string{
+
+        let hourString: string = t.hours.toString();
+
+        if (t.hours < 10)
+            hourString = "0" + hourString;
+        
+        let minuteString: string = t.minutes.toString();
+
+        if (t.minutes < 10)
+            minuteString = "0" + minuteString;
+
+        return `${hourString}:${minuteString}:00`;
+    }
 }

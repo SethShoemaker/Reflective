@@ -1,18 +1,18 @@
 <form class="form popup-form">
     <app-activity-select
         (activityId)="onActivityIdChange($event)"
-        (activityIdIsInvalid)="activityIdIsInvalid"
+        (activityIdIsValid)="onActivityIdIsValidChange($event)"
         [shouldDisplayFeedback]="shouldDisplayFeedback">
     </app-activity-select>
     <app-days-of-week-input 
         (daysOfWeek)="onDaysOfWeekChange($event)"
-        (daysOfWeekAreValid)="daysOfWeekAreValid"
+        (daysOfWeekAreValid)="onDaysOfWeekAreValidChange($event)"
         [shouldDisplayFeedback]="shouldDisplayFeedback">
     </app-days-of-week-input>
     <app-start-and-end-time-input 
         (startTime)="onStartTimeChange($event)" 
         (endTime)="onEndTimeChange($event)"
-        (timesAreValid)="timesAreValid"
+        (timesAreValid)="onTimesAreValidChange($event)"
         [shouldDisplayFeedback]="shouldDisplayFeedback">
     </app-start-and-end-time-input>
     <div class="buttons">
