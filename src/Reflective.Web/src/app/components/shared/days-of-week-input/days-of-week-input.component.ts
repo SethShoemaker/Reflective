@@ -8,7 +8,7 @@ import { WeekDayMap } from 'src/app/models/activityPlan.model';
 })
 export class DaysOfWeekInputComponent implements OnInit {
   @Output() daysOfWeek: EventEmitter<WeekDayMap> = new EventEmitter<WeekDayMap>();
-  @Output() daysOfWeekAreValid: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  @Output() daysOfWeekAreValid: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() shouldDisplayFeedback: boolean = false;
 
   internalIsValid: boolean = false;
