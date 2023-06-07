@@ -27,6 +27,10 @@ form.form{
         flex-direction: column;
         margin-bottom: calc(0.8rem + 0.5vw);
 
+        .invalid{
+            border-color: $red1 !important;
+        }
+
         label{
             font-size: calc(0.6rem + 0.38vw);
             padding: 0 0 calc(0.14rem + 0.04rem) calc(0.5rem + 0.15vw);
@@ -49,10 +53,6 @@ form.form{
             font-weight: 200;
             transition-property: border-color;
             transition-duration: 0.2s;
-
-            &.invalid{
-                border-color: $red1;
-            }
 
             &[type="time"]::-webkit-calendar-picker-indicator{
                 filter: invert(1);

@@ -8,7 +8,7 @@
                 name="start" 
                 id="start"
                 (change)="parseStartTimeString()"
-                [ngClass]="{'invalid' : !internalTimesAreValid}">
+                [ngClass]="{'invalid' : feedbackIsVisible() }">
         </div>
         <div class="form-control">
             <label for="end">End</label>
@@ -18,15 +18,15 @@
                 name="end" 
                 id="end"
                 (change)="parseEndTimeString()"
-                [ngClass]="{'invalid' : !internalTimesAreValid}">
+                [ngClass]="{'invalid' : feedbackIsVisible() }">
         </div>
     </div>
-    <span class="feedback" [ngClass]="{ 'hidden': internalTimesAreValid }">
-        End time must be different from start time
+    <span class="feedback" [ngClass]="{ 'hidden': !feedbackIsVisible() }">
+        {{ getFeedBackMessage() }}
     </span>
 </div>
 <div class="form-control">
     <label for="duration">Duration</label>
-    <input type="text" name="duration" id="duration" value="{{ duration | duration }}" readonly>
+    <input type="text" name="duration" id="duration" value="{{ internalDuration | duration }}" readonly>
     <span class="feedback hidden"></span>
 </div>
