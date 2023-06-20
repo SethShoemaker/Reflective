@@ -12,6 +12,8 @@ export class StartAndEndTimeInputComponent implements OnInit {
   @Output() endTime: EventEmitter<Time> = new EventEmitter<Time>();
   @Output() timesAreValid: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() shouldDisplayFeedback: boolean = false;
+  @Input() initialStartTime: Time | null = null;
+  @Input() initialEndTime: Time | null = null;
 
   internalStartTime: Time = { hours: NaN, minutes: NaN };
   internalEndTime: Time = { hours: NaN, minutes: NaN };
@@ -24,7 +26,13 @@ export class StartAndEndTimeInputComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.initialStartTime != null)
+      this.startTimeString = TimeParser.ParseTo24HourString(this.initialStartTime);
+    
+    if (this.initialEndTime != null)
+      this.endTimeString = TimeParser.ParseTo24HourString(this.initialEndTime);
+  }
 
   parseStartTimeString() {
     this.internalStartTime = TimeParser.ParseFrom24HourString(this.startTimeString);
