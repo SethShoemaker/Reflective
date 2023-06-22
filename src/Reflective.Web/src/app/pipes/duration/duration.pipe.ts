@@ -13,8 +13,13 @@ export class DurationPipe implements PipeTransform {
     if (time.hours > 0)
       durationString += `${time.hours} hours`;
     
-    if (time.minutes > 0)
-      durationString += ` ${time.minutes} minutes`;
+    if (time.minutes > 0) {
+
+      if (time.hours > 0)
+        durationString += " ";
+
+      durationString += `${time.minutes} minutes`;
+    }
     
     return durationString;
   }
