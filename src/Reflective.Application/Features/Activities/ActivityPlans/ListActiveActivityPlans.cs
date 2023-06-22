@@ -4,16 +4,16 @@ using Reflective.Domain.Persistence.Repositories;
 
 namespace Reflective.Application.Features.Activities.ActivityPlans
 {
-    public class ListActivityPlansHandler : IRequestHandler<ListActivityPlansRequest, List<ActivityPlanDto>>
+    public class ListActiveActivityPlansHandler : IRequestHandler<ListActiveActivityPlansRequest, List<ActivityPlanDto>>
     {
         private readonly IActivityRepository _ar;
 
-        public ListActivityPlansHandler(IActivityRepository ar)
+        public ListActiveActivityPlansHandler(IActivityRepository ar)
         {
             _ar = ar;
         }
 
-        public async Task<List<ActivityPlanDto>> Handle(ListActivityPlansRequest request, CancellationToken cancellationToken)
+        public async Task<List<ActivityPlanDto>> Handle(ListActiveActivityPlansRequest request, CancellationToken cancellationToken)
         {
             IReadOnlyList<ActivityPlan> activityPlans = await _ar.GetAllActiveActivityPlansAsync(cancellationToken);
 
@@ -29,7 +29,7 @@ namespace Reflective.Application.Features.Activities.ActivityPlans
         }
     }
 
-    public record ListActivityPlansRequest : IRequest<List<ActivityPlanDto>>;
+    public record ListActiveActivityPlansRequest : IRequest<List<ActivityPlanDto>>;
 
     public class ActivityPlanDto
     {

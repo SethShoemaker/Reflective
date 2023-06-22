@@ -10,7 +10,7 @@ namespace Reflective.Api.Controllers
         [HttpGet]
         public async Task<List<ActivityPlanDto>> List()
         {
-            return await _mediator.Send(new ListActivityPlansRequest());
+            return await _mediator.Send(new ListActiveActivityPlansRequest());
         }
 
         [Route("active/{id}")]
