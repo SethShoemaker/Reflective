@@ -33,7 +33,7 @@ export class StartAndEndTimeInputComponent implements OnInit {
   
   ngOnChanges(changes: SimpleChanges) {
     if(changes["initialStartTime"])
-      if (changes["initialStartTime"].currentValue != null && !this.initialStartTimeWasSet) {
+      if (changes["initialStartTime"].currentValue != null && this.initialStartTimeWasSet == false) {
         this.internalStartTime = changes["initialStartTime"].currentValue;
         this.startTimeString = TimeParser.ParseTo24HourString(changes["initialStartTime"].currentValue);
 
@@ -46,7 +46,7 @@ export class StartAndEndTimeInputComponent implements OnInit {
       }
     
     if(changes["initialEndTime"])
-      if (changes["initialEndTime"].currentValue != null && !this.initialEndTimeWasSet) {
+      if (changes["initialEndTime"].currentValue != null && this.initialEndTimeWasSet == false) {
         this.internalEndTime = changes["initialEndTime"].currentValue;
         this.endTimeString = TimeParser.ParseTo24HourString(changes["initialEndTime"].currentValue);
 
@@ -59,14 +59,14 @@ export class StartAndEndTimeInputComponent implements OnInit {
       }
   }
 
-  parseStartTimeString() {
+  onStartTimeChange() {
     this.internalStartTime = TimeParser.ParseFrom24HourString(this.startTimeString);
     this.startTime.emit(this.internalStartTime);
     this.determineIfTimesAreValid();
     this.determineDuration();
   }
 
-  parseEndTimeString() {
+  onEndTimeChange() {
     this.internalEndTime = TimeParser.ParseFrom24HourString(this.endTimeString);
     this.endTime.emit(this.internalEndTime);
     this.determineIfTimesAreValid();
@@ -74,7 +74,7 @@ export class StartAndEndTimeInputComponent implements OnInit {
   }
 
   determineDuration() {
-    if (!this.inputsAreFilled()) return;
+    if (this.inputsAreFilled() == false) return;
 
     let newDuration: Time = { hours: 0, minutes: 0 };
 
@@ -107,11 +107,11 @@ export class StartAndEndTimeInputComponent implements OnInit {
   }
 
   inputsAreFilled(): boolean {
-    return !(
-      isNaN(this.internalStartTime.hours) ||
-      isNaN(this.internalStartTime.minutes) ||
-      isNaN(this.internalEndTime.hours) ||
-      isNaN(this.internalEndTime.minutes)
+    return (
+      isNaN(this.internalStartTime.hours) == false &&
+      isNaN(this.internalStartTime.minutes) == false &&
+      isNaN(this.internalEndTime.hours) == false &&
+      isNaN(this.internalEndTime.minutes) == false
     );
   }
 

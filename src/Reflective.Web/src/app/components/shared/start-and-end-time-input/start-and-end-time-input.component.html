@@ -7,7 +7,7 @@
                 type="time" 
                 name="start" 
                 id="start"
-                (change)="parseStartTimeString()"
+                (change)="onStartTimeChange()"
                 [ngClass]="{'invalid' : feedbackIsVisible() }">
         </div>
         <div class="form-control">
@@ -17,7 +17,7 @@
                 type="time" 
                 name="end" 
                 id="end"
-                (change)="parseEndTimeString()"
+                (change)="onEndTimeChange()"
                 [ngClass]="{'invalid' : feedbackIsVisible() }">
         </div>
     </div>

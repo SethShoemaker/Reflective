@@ -23,7 +23,7 @@ export class DaysOfWeekInputComponent implements OnInit {
   
   ngOnChanges(changes: SimpleChanges) {
     if(changes["initialWeekDays"])
-      if (changes["initialWeekDays"].currentValue != null && !this.initialWeekDaysWasSet) {
+      if (changes["initialWeekDays"].currentValue != null && this.initialWeekDaysWasSet == false) {
         this.internalWeekDays = changes["initialWeekDays"].currentValue;
 
         this.initialWeekDaysWasSet = true;
@@ -46,8 +46,10 @@ export class DaysOfWeekInputComponent implements OnInit {
     this.internalIsValid = false;
 
     for (let i = 0; i < 6; i++)
-      if (this.internalWeekDays.get(i))
+      if (this.internalWeekDays.get(i)) {
         this.internalIsValid = true;
+        break;
+      }
     
     this.daysOfWeekAreValid.emit(this.internalIsValid);
   }
