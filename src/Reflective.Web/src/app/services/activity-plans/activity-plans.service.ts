@@ -2,7 +2,7 @@ import { Time } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { ActivityPlan, WeekDayMap } from 'src/app/models/activityPlan.model';
+import { ActivityPlan, ActivityPlanAdjustData, WeekDayMap } from 'src/app/models/activityPlan.model';
 import { TimeParser } from 'src/app/parsers/time-parser/time-parser';
 import { WeekDayMapParser } from 'src/app/parsers/weekday-map-parser/weekday-map-parser';
 
@@ -48,6 +48,33 @@ export class ActivityPlansService {
         return transformedActivityPlans;
       })
     );
+  }
+
+  getAdjustData(activityPlanId: string): Observable<ActivityPlanAdjustData>{
+    interface GetAdjustDataDto {
+      daysOfWeek: number[];
+      start: string;
+      end: string;
+    };
+
+    return this.http.get<GetAdjustDataDto>(`/activities/plans/adjust/${activityPlanId}`).pipe(
+      map((dto: GetAdjustDataDto) => {
+        return {
+          daysOfWeek: WeekDayMapParser.ParseFromNumberArray(dto.daysOfWeek),
+          start: TimeParser.ParseFrom24HourString(dto.start),
+          end: TimeParser.ParseFrom24HourString(dto.end)
+        };
+      })
+    );
+  }
+
+  saveAdjustData(activityPlanId: string, daysOfWeek: WeekDayMap, startTime: Time, endTime: Time): Observable<any>{
+    return this.http.post(`/activities/plans/adjust/${activityPlanId}`, {
+      activityPlanId: activityPlanId,
+      startTime: TimeParser.ParseTo24HourString(startTime),
+      endTime: TimeParser.ParseTo24HourString(endTime),
+      daysOfWeek: WeekDayMapParser.ParseToNumberArray(daysOfWeek)
+    })
   }
 
   create(activityId: string, daysOfWeek: WeekDayMap, startTime: Time, endTime: Time): Observable<any> {

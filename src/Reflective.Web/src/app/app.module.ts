@@ -24,6 +24,7 @@ import { TimeOfDayPipe } from './pipes/time-of-day/time-of-day.pipe';
 import { DaysOfWeekInputComponent } from './components/shared/days-of-week-input/days-of-week-input.component';
 import { StartAndEndTimeInputComponent } from './components/shared/start-and-end-time-input/start-and-end-time-input.component';
 import { ActivitySelectComponent } from './components/shared/activity-select-component/activity-select.component';
+import { PlansPopupAdjustComponent } from './components/plans-popup/plans-popup-adjust/plans-popup-adjust.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ActivitySelectComponent } from './components/shared/activity-select-com
     DaysOfWeekInputComponent,
     StartAndEndTimeInputComponent,
     ActivitySelectComponent,
+    PlansPopupAdjustComponent,
   ],
   imports: [
     BrowserModule,

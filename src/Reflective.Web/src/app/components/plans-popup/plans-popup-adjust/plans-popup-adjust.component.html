@@ -1,0 +1,22 @@
+<form class="form popup-form">
+    <app-days-of-week-input 
+        (daysOfWeek)="onDaysOfWeekChange($event)"
+        (daysOfWeekAreValid)="onDaysOfWeekAreValidChange($event)"
+        [shouldDisplayFeedback]="shouldDisplayFeedback"
+        [initialWeekDays]="initialDaysOfWeek">
+    </app-days-of-week-input>
+    <app-start-and-end-time-input 
+        (startTime)="onStartTimeChange($event)" 
+        (endTime)="onEndTimeChange($event)"
+        (timesAreValid)="onTimesAreValidChange($event)"
+        [shouldDisplayFeedback]="shouldDisplayFeedback"
+        [initialStartTime]="initialStartTime"
+        [initialEndTime]="initialEndTime">
+    </app-start-and-end-time-input>
+    <div class="buttons">
+        <app-cancel-button (click)="cancel()"></app-cancel-button>
+        <div class="button" (click)="submit()">
+            Save Changes
+        </div>
+    </div>
+</form>

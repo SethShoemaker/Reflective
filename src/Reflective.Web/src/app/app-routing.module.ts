@@ -9,6 +9,7 @@ import { NetworkErrorPopupComponent } from './components/network-error-popup/net
 import { PlansPopupComponent } from './components/plans-popup/plans-popup.component';
 import { PlansPopupListComponent } from './components/plans-popup/plans-popup-list/plans-popup-list.component';
 import { PlansPopupCreateComponent } from './components/plans-popup/plans-popup-create/plans-popup-create.component';
+import { PlansPopupAdjustComponent } from './components/plans-popup/plans-popup-adjust/plans-popup-adjust.component';
 
 const routes: Routes = [
   {
@@ -51,11 +52,11 @@ const routes: Routes = [
         title: "New Plan",
         component: PlansPopupCreateComponent
       },
-      // {
-      //   path: "adjust/:id",
-      //   title: "Adjust Plan",
-      //   component: ActivitiesPopupCreateComponent
-      // },
+      {
+        path: "adjust/:id",
+        title: "Adjust Plan",
+        component: PlansPopupAdjustComponent
+      },
       // {
       //   path: "end/:id",
       //   title: "End Activity",

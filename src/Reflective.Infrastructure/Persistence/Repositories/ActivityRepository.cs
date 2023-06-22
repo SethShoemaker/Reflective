@@ -65,5 +65,19 @@ namespace Reflective.Infrastructure.Persistence.Repositories
 
             return activityPlans.AsReadOnly();
         }
+
+        public async Task<ActivityPlan?> GetActivityPlanByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await _context.ActivityPlans
+                .Where(ap => ap.Id == id)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public async Task<Activity?> GetActivityByActivityPlanId(Guid activityPlanId, CancellationToken cancellationToken = default)
+        {
+            return await _context.Activities
+                .Where(a => a.ActivityPlans.FirstOrDefault(ap => ap.Id == activityPlanId) != null)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }
