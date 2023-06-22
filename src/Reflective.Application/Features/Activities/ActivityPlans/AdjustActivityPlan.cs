@@ -4,16 +4,16 @@ using Reflective.Domain.Persistence.Repositories;
 
 namespace Reflective.Application.Features.Activities.ActivityPlans
 {
-    public class SaveActivityPlanAdjustDataHandler : IRequestHandler<SaveActivityPlanAdjustDataRequest>
+    public class AdjustActivityPlanHandler : IRequestHandler<AdjustActivityPlanRequest>
     {
         private readonly IActivityRepository _ar;
 
-        public SaveActivityPlanAdjustDataHandler(IActivityRepository ar)
+        public AdjustActivityPlanHandler(IActivityRepository ar)
         {
             _ar = ar;
         }
 
-        public async Task Handle(SaveActivityPlanAdjustDataRequest request, CancellationToken cancellationToken)
+        public async Task Handle(AdjustActivityPlanRequest request, CancellationToken cancellationToken)
         {
             Activity? activity = await _ar.GetActivityByActiveActivityPlanId(request.id, cancellationToken);
 
@@ -26,5 +26,5 @@ namespace Reflective.Application.Features.Activities.ActivityPlans
         }
     }
 
-    public record SaveActivityPlanAdjustDataRequest(Guid id, DayOfWeek[] daysOfWeek, TimeOnly startTime, TimeOnly endTime) : IRequest;
+    public record AdjustActivityPlanRequest(Guid id, DayOfWeek[] daysOfWeek, TimeOnly startTime, TimeOnly endTime) : IRequest;
 }

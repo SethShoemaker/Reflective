@@ -31,7 +31,7 @@ namespace Reflective.Api.Controllers
         [HttpPost]
         public async Task Adjust([FromRoute] Guid id, SaveAdjustRequest request)
         {
-            await _mediator.Send(new SaveActivityPlanAdjustDataRequest(id, request.daysOfWeek, request.startTime, request.endTime));
+            await _mediator.Send(new AdjustActivityPlanRequest(id, request.daysOfWeek, request.startTime, request.endTime));
         }
 
         public record SaveAdjustRequest(DayOfWeek[] daysOfWeek, TimeOnly startTime, TimeOnly endTime);
