@@ -1,5 +1,5 @@
 import { Time } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { TimeParser } from 'src/app/parsers/time-parser/time-parser';
 
 @Component({
@@ -15,6 +15,9 @@ export class StartAndEndTimeInputComponent implements OnInit {
   @Input() initialStartTime: Time | null = null;
   @Input() initialEndTime: Time | null = null;
 
+  initialStartTimeWasSet: boolean = false;
+  initialEndTimeWasSet: boolean = false;
+
   internalStartTime: Time = { hours: NaN, minutes: NaN };
   internalEndTime: Time = { hours: NaN, minutes: NaN };
   internalTimesAreValid: boolean = false;
@@ -24,14 +27,36 @@ export class StartAndEndTimeInputComponent implements OnInit {
   startTimeString: string = "";
   endTimeString: string = "";
 
-  constructor() {}
+  constructor() {} 
 
-  ngOnInit(): void {
-    if (this.initialStartTime != null)
-      this.startTimeString = TimeParser.ParseTo24HourString(this.initialStartTime);
+  ngOnInit(): void {}
+  
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes["initialStartTime"])
+      if (changes["initialStartTime"].currentValue != null && !this.initialStartTimeWasSet) {
+        this.internalStartTime = changes["initialStartTime"].currentValue;
+        this.startTimeString = TimeParser.ParseTo24HourString(changes["initialStartTime"].currentValue);
+
+        this.initialStartTimeWasSet = true;
+
+        this.startTime.emit(this.internalStartTime);
+
+        this.determineIfTimesAreValid();
+        this.determineDuration();
+      }
     
-    if (this.initialEndTime != null)
-      this.endTimeString = TimeParser.ParseTo24HourString(this.initialEndTime);
+    if(changes["initialEndTime"])
+      if (changes["initialEndTime"].currentValue != null && !this.initialEndTimeWasSet) {
+        this.internalEndTime = changes["initialEndTime"].currentValue;
+        this.endTimeString = TimeParser.ParseTo24HourString(changes["initialEndTime"].currentValue);
+
+        this.initialEndTimeWasSet = true;
+
+        this.endTime.emit(this.internalEndTime);
+
+        this.determineIfTimesAreValid();
+        this.determineDuration();
+      }
   }
 
   parseStartTimeString() {

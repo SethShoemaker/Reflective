@@ -1,34 +1,48 @@
 <div class="form-control">
     <label for="days-of-week">Days of Week</label>
     <div class="days-of-week" id="days-of-week">
-        <label class="day-of-week" [ngClass]="{ 'invalid': feedbackIsVisible() }" for="sun">
-            <input type="checkbox" name="sun" id="sun" (click)="toggleWeekDay(0)">
-            <span>Sun</span>
-        </label>
-        <label class="day-of-week" [ngClass]="{ 'invalid': feedbackIsVisible() }" for="mon">
-            <input type="checkbox" name="mon" id="mon" (click)="toggleWeekDay(1)">
-            <span>Mon</span>
-        </label>
-        <label class="day-of-week" [ngClass]="{ 'invalid': feedbackIsVisible() }" for="tue">
-            <input type="checkbox" name="tue" id="tue" (click)="toggleWeekDay(2)">
-            <span>Tue</span>
-        </label>
-        <label class="day-of-week" [ngClass]="{ 'invalid': feedbackIsVisible() }" for="wed">
-            <input type="checkbox" name="wed" id="wed" (click)="toggleWeekDay(3)">
-            <span>Wed</span>
-        </label>
-        <label class="day-of-week" [ngClass]="{ 'invalid': feedbackIsVisible() }" for="thu">
-            <input type="checkbox" name="thu" id="thu" (click)="toggleWeekDay(4)">
-            <span>Thu</span>
-        </label>
-        <label class="day-of-week" [ngClass]="{ 'invalid': feedbackIsVisible() }" for="fri">
-            <input type="checkbox" name="fri" id="fri" (click)="toggleWeekDay(5)">
-            <span>Fri</span>
-        </label>
-        <label class="day-of-week" [ngClass]="{ 'invalid': feedbackIsVisible() }" for="sat">
-            <input type="checkbox" name="sat" id="sat" (click)="toggleWeekDay(6)">
-            <span>Sat</span>
-        </label>
+        <div role="checkbox" 
+            class="day-of-week" 
+            [ngClass]="{ 'invalid': feedbackIsVisible(), 'active': internalWeekDays.get(0) }"
+            (click)="toggleWeekDay(0)">
+            Sun
+        </div>
+        <div role="checkbox" 
+            class="day-of-week" 
+            [ngClass]="{ 'invalid': feedbackIsVisible(), 'active': internalWeekDays.get(1) }"
+            (click)="toggleWeekDay(1)">
+            Mon
+        </div>
+        <div role="checkbox" 
+            class="day-of-week" 
+            [ngClass]="{ 'invalid': feedbackIsVisible(), 'active': internalWeekDays.get(2) }"
+            (click)="toggleWeekDay(2)">
+            Tue
+        </div>
+        <div role="checkbox" 
+            class="day-of-week" 
+            [ngClass]="{ 'invalid': feedbackIsVisible(), 'active': internalWeekDays.get(3) }"
+            (click)="toggleWeekDay(3)">
+            Wed
+        </div>
+        <div role="checkbox" 
+            class="day-of-week" 
+            [ngClass]="{ 'invalid': feedbackIsVisible(), 'active': internalWeekDays.get(4) }"
+            (click)="toggleWeekDay(4)">
+            Thu
+        </div>
+        <div role="checkbox" 
+            class="day-of-week" 
+            [ngClass]="{ 'invalid': feedbackIsVisible(), 'active': internalWeekDays.get(5) }"
+            (click)="toggleWeekDay(5)">
+            Fri
+        </div>
+        <div role="checkbox" 
+            class="day-of-week" 
+            [ngClass]="{ 'invalid': feedbackIsVisible(), 'active': internalWeekDays.get(6) }"
+            (click)="toggleWeekDay(6)">
+            Sat
+        </div>
     </div>
     <span class="feedback" [ngClass]="{'hidden': !feedbackIsVisible()}">
         You must select at least one day
