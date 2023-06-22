@@ -73,10 +73,15 @@ namespace Reflective.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<Activity?> GetActivityByActivityPlanId(Guid activityPlanId, CancellationToken cancellationToken = default)
+        public async Task<Activity?> GetActivityByActiveActivityPlanId(Guid activityPlanId, CancellationToken cancellationToken = default)
         {
             return await _context.Activities
-                .Where(a => a.ActivityPlans.FirstOrDefault(ap => ap.Id == activityPlanId) != null)
+                .Where(a => a.ActivityPlans
+                    .Where(ap => ap.Id == activityPlanId)
+                    .Where(ap => ap.Versions
+                        .Where(apv => apv.EndDate == null)
+                        .FirstOrDefault() != null)
+                    .FirstOrDefault() != null)
                 .FirstOrDefaultAsync(cancellationToken);
         }
     }

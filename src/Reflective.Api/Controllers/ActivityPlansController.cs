@@ -13,16 +13,23 @@ namespace Reflective.Api.Controllers
             return await _mediator.Send(new ListActivityPlansRequest());
         }
 
-        [Route("adjust/{id}")]
+        [Route("active/{id}")]
         [HttpGet]
-        public async Task<GetActivityPlanAdjustDataResponse> GetAdjust([FromRoute] Guid id)
+        public async Task<GetActiveActivityPlanResponse> GetActive(Guid id)
         {
-            return await _mediator.Send(new GetActivityPlanAdjustDataRequest(id));
+            return await _mediator.Send(new GetActiveActivityPlanRequest(id));
+        }
+
+        [Route("end/{id}")]
+        [HttpGet]
+        public async Task End(Guid id)
+        {
+            await _mediator.Send(new EndActivityPlanRequest(id));
         }
 
         [Route("adjust/{id}")]
         [HttpPost]
-        public async Task SaveAdjust([FromRoute] Guid id, SaveAdjustRequest request)
+        public async Task Adjust([FromRoute] Guid id, SaveAdjustRequest request)
         {
             await _mediator.Send(new SaveActivityPlanAdjustDataRequest(id, request.daysOfWeek, request.startTime, request.endTime));
         }
