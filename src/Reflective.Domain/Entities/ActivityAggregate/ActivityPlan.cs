@@ -10,6 +10,12 @@ namespace Reflective.Domain.Entities.ActivityAggregate
         {
             Activity = activity;
 
+            if(daysOfWeek.Length == 0)
+                throw new ArgumentException($"an activity plan must have at least one day of the week");
+
+            if(startTime == endTime)
+                throw new ArgumentException($"the start time and end time of an activity plan cannot be the same");
+
             _versions.Add(new(){
                 ActivityPlan = this,
                 StartDate = DateOnly.FromDateTime(DateTime.Now),
@@ -38,6 +44,12 @@ namespace Reflective.Domain.Entities.ActivityAggregate
         {
             if(ActiveVersion is null)
                 throw new InvalidOperationException($"cannot adjust plan, already ended");
+
+            if(daysOfWeek.Length == 0)
+                throw new ArgumentException($"an activity plan must have at least one day of the week");
+
+            if(startTime == endTime)
+                throw new ArgumentException($"the start time and end time of an activity plan cannot be the same");
 
             if(ActiveVersion.StartDate == DateOnly.FromDateTime(DateTime.Today))
             {
