@@ -1,0 +1,9 @@
+div.popup div.body{
+    div.confirmation{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        height: 100%;
+    }
+}

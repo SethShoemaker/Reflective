@@ -1,7 +1,7 @@
 import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActivityPlanAdjustData, WeekDayMap } from 'src/app/models/activityPlan.model';
+import { ActivityPlan, WeekDayMap } from 'src/app/models/activityPlan.model';
 import { ActivityPlansService } from 'src/app/services/activity-plans/activity-plans.service';
 
 @Component({
@@ -40,7 +40,7 @@ export class PlansPopupAdjustComponent implements OnInit {
       this.activityPlanId = activityPlanId;
 
     const observer = {
-      next: (adjustData: ActivityPlanAdjustData) => {
+      next: (adjustData: ActivityPlan) => {
         this.initialDaysOfWeek = adjustData.daysOfWeek;
         this.initialStartTime = adjustData.start;
         this.initialEndTime = adjustData.end;
@@ -48,7 +48,7 @@ export class PlansPopupAdjustComponent implements OnInit {
       error: () => this.router.navigateByUrl("/plans")
     }
 
-    this.activityPlanService.getAdjustData(this.activityPlanId).subscribe(observer);
+    this.activityPlanService.getActive(this.activityPlanId).subscribe(observer);
   }
 
   submit() {
@@ -61,7 +61,7 @@ export class PlansPopupAdjustComponent implements OnInit {
       error: () => this.router.navigateByUrl("/plans")
     }
 
-    this.activityPlanService.saveAdjustData(this.activityPlanId, this.daysOfWeek, this.startTime, this.endTime).subscribe(observer);
+    this.activityPlanService.adjust(this.activityPlanId, this.daysOfWeek, this.startTime, this.endTime).subscribe(observer);
   }
 
   cancel() {

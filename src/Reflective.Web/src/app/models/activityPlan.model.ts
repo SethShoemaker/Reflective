@@ -16,9 +16,3 @@ export class WeekDayMap extends Map<WeekDay, boolean>{
             this.set(i, false);
     }
 }
-
-export type ActivityPlanAdjustData = {
-    daysOfWeek: WeekDayMap;
-    start: Time;
-    end: Time;
-};

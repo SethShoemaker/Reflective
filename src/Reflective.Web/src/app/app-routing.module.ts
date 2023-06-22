@@ -10,6 +10,7 @@ import { PlansPopupComponent } from './components/plans-popup/plans-popup.compon
 import { PlansPopupListComponent } from './components/plans-popup/plans-popup-list/plans-popup-list.component';
 import { PlansPopupCreateComponent } from './components/plans-popup/plans-popup-create/plans-popup-create.component';
 import { PlansPopupAdjustComponent } from './components/plans-popup/plans-popup-adjust/plans-popup-adjust.component';
+import { PlansPopupEndComponent } from './components/plans-popup/plans-popup-end/plans-popup-end.component';
 
 const routes: Routes = [
   {
@@ -57,11 +58,11 @@ const routes: Routes = [
         title: "Adjust Plan",
         component: PlansPopupAdjustComponent
       },
-      // {
-      //   path: "end/:id",
-      //   title: "End Activity",
-      //   component: ActivitiesPopupRemoveConfirmationComponent
-      // }
+      {
+        path: "end/:id",
+        title: "End Activity",
+        component: PlansPopupEndComponent
+      }
     ]
   },
   {
