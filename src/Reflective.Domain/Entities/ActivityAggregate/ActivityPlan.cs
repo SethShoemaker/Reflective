@@ -80,13 +80,15 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             if(ActiveVersion is null)
                 throw new InvalidOperationException($"cannot end activity plan with id of \"{Id}\", activity plan is already ended");
 
-            ActiveVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
+            if(ActiveVersion.StartDate == DateOnly.FromDateTime(DateTime.Now))
+                _versions.Remove(ActiveVersion);
+            else
+                ActiveVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
         }
 
         internal void EndIfNotAlreadyEnded()
         {
-            if(ActiveVersion is not null)
-                ActiveVersion.EndDate = DateOnly.FromDateTime(DateTime.Today - TimeSpan.FromDays(1));
+            if(ActiveVersion is not null) End();
         }
     }
 }

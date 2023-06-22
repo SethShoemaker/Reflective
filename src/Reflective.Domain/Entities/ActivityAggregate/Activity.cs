@@ -143,6 +143,9 @@ namespace Reflective.Domain.Entities.ActivityAggregate
                 throw new KeyNotFoundException($"ActivityPlan with id of \"${planId}\" doesn't exist for \"{Name}\"");
 
             plan.End();
+
+            if(plan.Versions.Count == 0)
+                _activityPlans.Remove(plan);
         }
     }
 }
