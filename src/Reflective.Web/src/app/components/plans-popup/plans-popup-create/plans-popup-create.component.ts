@@ -35,7 +35,8 @@ export class PlansPopupCreateComponent implements OnInit {
     if (!this.timesAreValid || !this.daysOfWeekAreValid || !this.activityIdIsValid) return;
 
     const observer = {
-      
+      next: () => this.router.navigateByUrl("/plans"),
+      error: () => this.router.navigateByUrl("/plans")
     }
 
     this.activityPlanService.create(this.activityId, this.daysOfWeek, this.startTime, this.endTime).subscribe(observer);
