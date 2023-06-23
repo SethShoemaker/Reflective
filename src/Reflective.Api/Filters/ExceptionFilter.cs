@@ -18,7 +18,8 @@ namespace Reflective.Api.Filters
             {
                 { typeof(ValidationException), HandleValidationException },
                 { typeof(InvalidOperationException), HandleInvalidOperationException },
-                { typeof(KeyNotFoundException), HandleKeyNotFoundException }
+                { typeof(KeyNotFoundException), HandleKeyNotFoundException },
+                { typeof(ArgumentException), HandleArgumentException },
             };
         }
 
@@ -55,6 +56,13 @@ namespace Reflective.Api.Filters
         private void HandleKeyNotFoundException(ExceptionContext context)
         {
             var exception = (KeyNotFoundException)context.Exception;
+
+            context.Result = new BadRequestObjectResult(exception.Message);
+        }
+
+        private void HandleArgumentException(ExceptionContext context)
+        {
+            var exception = (ArgumentException)context.Exception;
 
             context.Result = new BadRequestObjectResult(exception.Message);
         }
