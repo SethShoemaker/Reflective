@@ -4,11 +4,11 @@ import { ActivityPlan } from 'src/app/models/activityPlan.model';
 import { ActivityPlansService } from 'src/app/services/activity-plans/activity-plans.service';
 
 @Component({
-  selector: 'app-plans-popup-list',
-  templateUrl: './plans-popup-list.component.html',
-  styleUrls: ['./plans-popup-list.component.scss']
+  selector: 'app-activity-plans-popup-list',
+  templateUrl: './activity-plans-popup-list.component.html',
+  styleUrls: ['./activity-plans-popup-list.component.scss']
 })
-export class PlansPopupListComponent implements OnInit {
+export class ActivityPlansPopupListComponent implements OnInit {
   activityPlans: ActivityPlan[] = [];
 
   constructor(

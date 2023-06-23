@@ -6,11 +6,11 @@ import { ActivitiesPopupCreateComponent } from './components/activities-popup/ac
 import { ActivitiesPopupEditComponent } from './components/activities-popup/activities-popup-edit/activities-popup-edit.component';
 import { ActivitiesPopupRemoveConfirmationComponent } from './components/activities-popup/activities-popup-remove-confirmation/activities-popup-remove-confirmation.component';
 import { NetworkErrorPopupComponent } from './components/network-error-popup/network-error-popup.component';
-import { PlansPopupComponent } from './components/plans-popup/plans-popup.component';
-import { PlansPopupListComponent } from './components/plans-popup/plans-popup-list/plans-popup-list.component';
-import { PlansPopupCreateComponent } from './components/plans-popup/plans-popup-create/plans-popup-create.component';
-import { PlansPopupAdjustComponent } from './components/plans-popup/plans-popup-adjust/plans-popup-adjust.component';
-import { PlansPopupEndComponent } from './components/plans-popup/plans-popup-end/plans-popup-end.component';
+import { ActivityPlansPopupComponent } from './components/activity-plans-popup/activity-plans-popup.component';
+import { ActivityPlansPopupListComponent } from './components/activity-plans-popup/activity-plans-popup-list/activity-plans-popup-list.component';
+import { ActivityPlansPopupCreateComponent } from './components/activity-plans-popup/activity-plans-popup-create/activity-plans-popup-create.component';
+import { ActivityPlansPopupAdjustComponent } from './components/activity-plans-popup/activity-plans-popup-adjust/activity-plans-popup-adjust.component';
+import { ActivityPlansPopupEndComponent } from './components/activity-plans-popup/activity-plans-popup-end/activity-plans-popup-end.component';
 
 const routes: Routes = [
   {
@@ -41,27 +41,27 @@ const routes: Routes = [
   },
   {
     path: "plans",
-    component: PlansPopupComponent,
+    component: ActivityPlansPopupComponent,
     children: [
       {
         path: "",
         title: "Plans",
-        component: PlansPopupListComponent
+        component: ActivityPlansPopupListComponent
       },
       {
         path: "create",
         title: "New Plan",
-        component: PlansPopupCreateComponent
+        component: ActivityPlansPopupCreateComponent
       },
       {
         path: "adjust/:id",
         title: "Adjust Plan",
-        component: PlansPopupAdjustComponent
+        component: ActivityPlansPopupAdjustComponent
       },
       {
         path: "end/:id",
         title: "End Activity",
-        component: PlansPopupEndComponent
+        component: ActivityPlansPopupEndComponent
       }
     ]
   },

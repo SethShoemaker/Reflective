@@ -16,16 +16,16 @@ import { FormsModule } from '@angular/forms';
 import { CancelButtonComponent } from './components/shared/cancel-button/cancel-button.component';
 import { NetworkErrorPopupComponent } from './components/network-error-popup/network-error-popup.component';
 import { NetworkErrorInterceptor } from './interceptors/network-error/network-error.interceptor';
-import { PlansPopupComponent } from './components/plans-popup/plans-popup.component';
-import { PlansPopupListComponent } from './components/plans-popup/plans-popup-list/plans-popup-list.component';
-import { PlansPopupCreateComponent } from './components/plans-popup/plans-popup-create/plans-popup-create.component';
+import { ActivityPlansPopupComponent } from './components/activity-plans-popup/activity-plans-popup.component';
+import { ActivityPlansPopupListComponent } from './components/activity-plans-popup/activity-plans-popup-list/activity-plans-popup-list.component';
+import { ActivityPlansPopupCreateComponent } from './components/activity-plans-popup/activity-plans-popup-create/activity-plans-popup-create.component';
 import { DurationPipe } from './pipes/duration/duration.pipe';
 import { TimeOfDayPipe } from './pipes/time-of-day/time-of-day.pipe';
 import { DaysOfWeekInputComponent } from './components/shared/days-of-week-input/days-of-week-input.component';
 import { StartAndEndTimeInputComponent } from './components/shared/start-and-end-time-input/start-and-end-time-input.component';
 import { ActivitySelectComponent } from './components/shared/activity-select-component/activity-select.component';
-import { PlansPopupAdjustComponent } from './components/plans-popup/plans-popup-adjust/plans-popup-adjust.component';
-import { PlansPopupEndComponent } from './components/plans-popup/plans-popup-end/plans-popup-end.component';
+import { ActivityPlansPopupAdjustComponent } from './components/activity-plans-popup/activity-plans-popup-adjust/activity-plans-popup-adjust.component';
+import { ActivityPlansPopupEndComponent } from './components/activity-plans-popup/activity-plans-popup-end/activity-plans-popup-end.component';
 
 @NgModule({
   declarations: [
@@ -39,16 +39,16 @@ import { PlansPopupEndComponent } from './components/plans-popup/plans-popup-end
     ActivitiesPopupCreateComponent,
     CancelButtonComponent,
     NetworkErrorPopupComponent,
-    PlansPopupComponent,
-    PlansPopupListComponent,
-    PlansPopupCreateComponent,
+    ActivityPlansPopupComponent,
+    ActivityPlansPopupListComponent,
+    ActivityPlansPopupCreateComponent,
     DurationPipe,
     TimeOfDayPipe,
     DaysOfWeekInputComponent,
     StartAndEndTimeInputComponent,
     ActivitySelectComponent,
-    PlansPopupAdjustComponent,
-    PlansPopupEndComponent,
+    ActivityPlansPopupAdjustComponent,
+    ActivityPlansPopupEndComponent,
   ],
   imports: [
     BrowserModule,

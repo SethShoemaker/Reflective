@@ -4,11 +4,11 @@ import { ActivityPlan } from 'src/app/models/activityPlan.model';
 import { ActivityPlansService } from 'src/app/services/activity-plans/activity-plans.service';
 
 @Component({
-  selector: 'app-plans-popup-end',
-  templateUrl: './plans-popup-end.component.html',
-  styleUrls: ['./plans-popup-end.component.scss']
+  selector: 'app-activity-plans-popup-end',
+  templateUrl: './activity-plans-popup-end.component.html',
+  styleUrls: ['./activity-plans-popup-end.component.scss']
 })
-export class PlansPopupEndComponent implements OnInit {
+export class ActivityPlansPopupEndComponent implements OnInit {
   planActivityName: string = "";
 
   activityPlanId: string = "";

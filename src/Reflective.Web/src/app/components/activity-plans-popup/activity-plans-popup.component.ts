@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-plans-popup',
-  templateUrl: './plans-popup.component.html',
-  styleUrls: ['./plans-popup.component.scss']
+  selector: 'app-activity-plans-popup',
+  templateUrl: './activity-plans-popup.component.html',
+  styleUrls: ['./activity-plans-popup.component.scss']
 })
-export class PlansPopupComponent implements OnInit {
+export class ActivityPlansPopupComponent implements OnInit {
   title: string = "Plans";
   closeButtonIsActive: boolean = true;
 
