@@ -1,0 +1,73 @@
+<div id="date-selector-container">
+    <div id="date-selector">
+        <img src="assets/images/icons/prev.svg" (click)="prev()">
+        <span>
+            {{ selectedDate | date: "EEEE, MMMM d y" }}
+        </span>
+        <img src="assets/images/icons/next.svg" (click)="next()">
+    </div>
+</div>
+<div id="activities-summary">
+    <div id="background">
+        <div id="top">
+            <span>2 AM</span>
+            <span>4 AM</span>
+            <span>6 AM</span>
+            <span>8 AM</span>
+            <span>10 AM</span>
+            <span>12 PM</span>
+            <span>2 PM</span>
+            <span>4 PM</span>
+            <span>6 PM</span>
+            <span>8 PM</span>
+            <span>10 PM</span>
+            <span></span>
+        </div>
+        <div id="bottom">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="foreground">
+        <div class="activity" *ngFor="let activity of activitySummaryItems">
+            <div class="left">
+                <div class="top">
+                    <span class="dot colored-text">
+                        &#8226;
+                    </span>
+                    <span class="name">
+                        {{ activity.name }}
+                    </span>
+                </div>
+                <div class="bottom">
+                    <!-- TODO: start and end button with functionality -->
+                </div>
+            </div>
+            <div class="right">
+                <ng-container *ngFor="let plan of activity.plans">
+                    <div class="plan colored-background" 
+                        [ngStyle]="{ 
+                                'left.%': plan.startsOnPrevDay 
+                                    ? -1 
+                                    : plan.startPercentage, 
+                                'width.%': plan.endsOnNextDay 
+                                    ? plan.startPercentage - plan.endPercentage 
+                                    : plan.startsOnPrevDay 
+                                        ? plan.endPercentage 
+                                        : plan.endPercentage - plan.startPercentage
+                    }"></div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

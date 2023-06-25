@@ -26,6 +26,7 @@ import { StartAndEndTimeInputComponent } from './components/shared/start-and-end
 import { ActivitySelectComponent } from './components/shared/activity-select-component/activity-select.component';
 import { ActivityPlansPopupAdjustComponent } from './components/activity-plans-popup/activity-plans-popup-adjust/activity-plans-popup-adjust.component';
 import { ActivityPlansPopupEndComponent } from './components/activity-plans-popup/activity-plans-popup-end/activity-plans-popup-end.component';
+import { ActivitySummaryComponent } from './components/activity-summary/activity-summary.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ActivityPlansPopupEndComponent } from './components/activity-plans-popu
     ActivitySelectComponent,
     ActivityPlansPopupAdjustComponent,
     ActivityPlansPopupEndComponent,
+    ActivitySummaryComponent,
   ],
   imports: [
     BrowserModule,

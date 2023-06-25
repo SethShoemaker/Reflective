@@ -27,4 +27,13 @@ export class TimeParser {
 
         return `${hourString}:${minuteString}:00`;
     }
+
+    static ParseFromStringToPercentageOfDay(s: string): number{
+        let time: Time = this.ParseFrom24HourString(s);
+
+        const numMinutesFromStartOfDay: number = (time.hours * 60) + time.minutes;
+        const numMinutesInADay: number = 1440;
+
+        return numMinutesFromStartOfDay / numMinutesInADay * 100;
+    }
 }
