@@ -84,5 +84,13 @@ namespace Reflective.Infrastructure.Persistence.Repositories
                     .FirstOrDefault() != null)
                 .FirstOrDefaultAsync(cancellationToken);
         }
+
+        public async Task<List<Activity>> GetActivitiesTrackedOnDateAsync(DateOnly date, CancellationToken cancellationToken = default)
+        {
+            return await _context.Activities
+                .Where(a => a.TrackingPeriodStart <= date)
+                .Where(a => a.TrackingPeriodEnd >= date || a.TrackingPeriodEnd == null)
+                .ToListAsync(cancellationToken);
+        }
     }
 }

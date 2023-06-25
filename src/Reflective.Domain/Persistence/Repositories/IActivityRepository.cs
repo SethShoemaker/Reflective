@@ -23,5 +23,7 @@ namespace Reflective.Domain.Persistence.Repositories
         public Task<ActivityPlan?> GetActivityPlanByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
         public Task<Activity?> GetActivityByActiveActivityPlanId(Guid activityPlanId, CancellationToken cancellationToken = default);
+
+        public Task<List<Activity>> GetActivitiesTrackedOnDateAsync(DateOnly date, CancellationToken cancellationToken = default);
     }
 }
