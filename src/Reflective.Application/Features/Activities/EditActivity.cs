@@ -52,8 +52,6 @@ namespace Reflective.Application.Features.Activities
             activity.Description = request.description;
 
             await _ar.UpdateAsync(activity, cancellationToken);
-
-            return;
         }
     }
 
