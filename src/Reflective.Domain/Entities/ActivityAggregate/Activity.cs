@@ -81,7 +81,10 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             get => _sessions.AsReadOnly();
         }
 
-        public ActivitySession? ActiveSession { get; private set; }
+        public ActivitySession? ActiveSession 
+        {
+            get => _sessions.FirstOrDefault(s => s.End is null);
+        }
 
         public void StartSession()
         {
@@ -92,7 +95,6 @@ namespace Reflective.Domain.Entities.ActivityAggregate
                 throw new InvalidOperationException($"There is already an active session for activity: \"{Name}\"");
 
             ActivitySession newSession = new(this);
-            ActiveSession = newSession;
             _sessions.Add(newSession);
         }
 
@@ -104,8 +106,7 @@ namespace Reflective.Domain.Entities.ActivityAggregate
             if(ActiveSession is null)
                 throw new InvalidOperationException($"There is no active session for activity: \"{Name}\"");
 
-            ActiveSession.End = DateTime.Now;
-            ActiveSession = null;
+            ActiveSession.EndSession();
         }
 
         private List<ActivityPlan> _activityPlans = new();

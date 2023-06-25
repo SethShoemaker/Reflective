@@ -23,9 +23,6 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("ActiveSessionId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
@@ -40,8 +37,6 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ActiveSessionId");
 
                     b.ToTable("Activities");
                 });
@@ -114,15 +109,6 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                     b.HasIndex("ActivityId");
 
                     b.ToTable("ActivitySession");
-                });
-
-            modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.Activity", b =>
-                {
-                    b.HasOne("Reflective.Domain.Entities.ActivityAggregate.ActivitySession", "ActiveSession")
-                        .WithMany()
-                        .HasForeignKey("ActiveSessionId");
-
-                    b.Navigation("ActiveSession");
                 });
 
             modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlan", b =>

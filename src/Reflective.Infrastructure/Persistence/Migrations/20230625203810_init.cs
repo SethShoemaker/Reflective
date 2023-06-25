@@ -19,8 +19,7 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     TrackingPeriodStart = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    TrackingPeriodEnd = table.Column<DateOnly>(type: "TEXT", nullable: true),
-                    ActiveSessionId = table.Column<Guid>(type: "TEXT", nullable: true)
+                    TrackingPeriodEnd = table.Column<DateOnly>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,11 +88,6 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Activities_ActiveSessionId",
-                table: "Activities",
-                column: "ActiveSessionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ActivityPlans_ActivityId",
                 table: "ActivityPlans",
                 column: "ActivityId");
@@ -107,30 +101,19 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                 name: "IX_ActivitySession_ActivityId",
                 table: "ActivitySession",
                 column: "ActivityId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Activities_ActivitySession_ActiveSessionId",
-                table: "Activities",
-                column: "ActiveSessionId",
-                principalTable: "ActivitySession",
-                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Activities_ActivitySession_ActiveSessionId",
-                table: "Activities");
-
             migrationBuilder.DropTable(
                 name: "ActivityPlanVersion");
 
             migrationBuilder.DropTable(
-                name: "ActivityPlans");
+                name: "ActivitySession");
 
             migrationBuilder.DropTable(
-                name: "ActivitySession");
+                name: "ActivityPlans");
 
             migrationBuilder.DropTable(
                 name: "Activities");

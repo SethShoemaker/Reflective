@@ -18,7 +18,6 @@ namespace Reflective.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Activity>().HasMany(a => a.Sessions).WithOne(a => a.Activity);
-            modelBuilder.Entity<Activity>().HasOne(a => a.ActiveSession);
             modelBuilder.Entity<Activity>().Navigation(a => a.Sessions).AutoInclude();
             modelBuilder.Entity<Activity>().Navigation(a => a.Sessions).UsePropertyAccessMode(PropertyAccessMode.Field);
 

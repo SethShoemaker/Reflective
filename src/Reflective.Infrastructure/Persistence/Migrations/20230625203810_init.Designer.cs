@@ -11,7 +11,7 @@ using Reflective.Infrastructure.Persistence;
 namespace Reflective.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230601154706_init")]
+    [Migration("20230625203810_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -24,9 +24,6 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("ActiveSessionId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -43,8 +40,6 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ActiveSessionId");
 
                     b.ToTable("Activities");
                 });
@@ -117,15 +112,6 @@ namespace Reflective.Infrastructure.Persistence.Migrations
                     b.HasIndex("ActivityId");
 
                     b.ToTable("ActivitySession");
-                });
-
-            modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.Activity", b =>
-                {
-                    b.HasOne("Reflective.Domain.Entities.ActivityAggregate.ActivitySession", "ActiveSession")
-                        .WithMany()
-                        .HasForeignKey("ActiveSessionId");
-
-                    b.Navigation("ActiveSession");
                 });
 
             modelBuilder.Entity("Reflective.Domain.Entities.ActivityAggregate.ActivityPlan", b =>
