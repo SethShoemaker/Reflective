@@ -11,7 +11,7 @@ import { ActivityService } from 'src/app/services/activity/activity.service';
 export class ActivitiesPopupEditComponent implements OnInit {
   name: string = "";
   nameIsInvalid: boolean = false;
-  description: string = "";
+  description: string | null = null;
   descriptionIsInvalid: boolean = false;
 
   activityId: string = "";
@@ -26,7 +26,7 @@ export class ActivitiesPopupEditComponent implements OnInit {
 
     this.activityId = this.route.snapshot.paramMap.get('id') ?? "";
     
-    if (this.activityId == "")
+    if (this.activityId.length == 0)
       this.router.navigateByUrl("/activities");
 
     const observer = {
@@ -47,14 +47,19 @@ export class ActivitiesPopupEditComponent implements OnInit {
   submit() {
     this.name = this.name.trim();
     this.nameIsInvalid = false;
-    this.description = this.description.trim();
-    this.descriptionIsInvalid = false;
 
     if (this.name.length == 0 || this.name.length > 10)
       this.nameIsInvalid = true;
+    
+    
+    if(this.description != null)
+      this.description = this.description.trim();
 
-    if (this.description.length > 55)
+    this.descriptionIsInvalid = false;
+
+    if (this.description != null && this.description.length > 55)
       this.descriptionIsInvalid = true;
+
 
     if (this.nameIsInvalid || this.descriptionIsInvalid)
       return;
