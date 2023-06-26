@@ -51,5 +51,19 @@ namespace Reflective.Api.Controllers
             await _mediator.Send(new StopTrackingActivityRequest(id));
             return;
         }
+
+        [Route("start-session/{id}")]
+        [HttpGet]
+        public async Task StartSession(Guid id)
+        {
+            await _mediator.Send(new StartActivitySessionRequest(id));
+        }
+
+        [Route("end-session/{id}")]
+        [HttpGet]
+        public async Task EndSession(Guid id)
+        {
+            await _mediator.Send(new EndActivitySessionRequest(id));
+        }
     }
 }

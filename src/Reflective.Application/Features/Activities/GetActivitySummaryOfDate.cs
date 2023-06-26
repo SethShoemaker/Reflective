@@ -36,8 +36,13 @@ namespace Reflective.Application.Features.Activities.GetActivitySummaryOfDate
                     if(sessionStartedAfterEndOfDay)
                         continue;
 
-                    bool sessionEndedBeforeDayStarted = session.End < request.date.ToDateTime(TimeOnly.MinValue) || session.End == null;
+                    bool sessionEndedBeforeDayStarted = session.End < request.date.ToDateTime(TimeOnly.MinValue);
                     if(sessionEndedBeforeDayStarted)
+                        continue;
+
+                    bool sessionIsActive = session.End == null;
+                    bool dateIsNotCurrent = request.date != DateOnly.FromDateTime(DateTime.Now);
+                    if(sessionIsActive && dateIsNotCurrent)
                         continue;
 
                     ActivitySessionDto sessionDto = new(
