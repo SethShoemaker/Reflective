@@ -19,7 +19,7 @@ export class ActivitiesPopupListComponent implements OnInit {
   ngOnInit(): void {
 
     const observer = {
-      next: (res: Activity[]) => this.activities = res
+      next: (activities: Activity[]) => this.activities = activities
     }
 
     this.activityService.getList().subscribe(observer);
