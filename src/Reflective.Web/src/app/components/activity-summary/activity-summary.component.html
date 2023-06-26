@@ -50,7 +50,16 @@
                     </span>
                 </div>
                 <div class="bottom">
-                    <!-- TODO: start and end button with functionality -->
+                    <ng-container *ngIf="selectedDateIsCurrent">
+                        <button *ngIf="!activity.hasActiveSession" (click)="startSession(activity.id)" class="start">
+                            <span>Start</span>
+                            <img src="/assets/images/icons/start.svg" alt="">
+                        </button>
+                        <button *ngIf="activity.hasActiveSession" (click)="endSession(activity.id)" class="end">
+                            <span>End</span>
+                            <img src="/assets/images/icons/end.svg" alt="">
+                        </button>
+                    </ng-container>
                 </div>
             </div>
             <div class="right">
@@ -61,10 +70,25 @@
                                     ? -1 
                                     : plan.startPercentage, 
                                 'width.%': plan.endsOnNextDay 
-                                    ? plan.startPercentage - plan.endPercentage 
+                                    ? 100
                                     : plan.startsOnPrevDay 
                                         ? plan.endPercentage 
                                         : plan.endPercentage - plan.startPercentage
+                    }"></div>
+                </ng-container>
+                <ng-container *ngFor="let session of activity.sessions">
+                    <div class="session colored-background"
+                        [ngStyle]="{ 
+                            'left.%': session.startedOnPrevDay 
+                                ? -1 
+                                : session.startPercentage, 
+                            'width.%': session.endedOnNextDay
+                                ? 100
+                                : session.endPercentage == null 
+                                    ? currentTimePercentage - session.startPercentage
+                                    : session.startedOnPrevDay
+                                        ? session.endPercentage
+                                        : session.endPercentage - session.startPercentage
                     }"></div>
                 </ng-container>
             </div>

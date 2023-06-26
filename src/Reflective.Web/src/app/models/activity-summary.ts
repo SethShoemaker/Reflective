@@ -2,6 +2,7 @@ export interface ActivitySummaryItem {
     id: string;
     name: string;
     sessions: ActivitySummaryItemSession[];
+    hasActiveSession: boolean;
     plans: ActivitySummaryItemPlan[];
 }
 

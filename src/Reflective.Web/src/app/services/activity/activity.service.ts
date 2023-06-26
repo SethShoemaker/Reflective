@@ -40,4 +40,12 @@ export class ActivityService {
   stopTrackingById(id: string): Observable<any>{
     return this.http.get(`/activities/stop-tracking/${id}`);
   }
+
+  startSessionById(id: string): Observable<void>{
+    return this.http.get<void>(`/activities/start-session/${id}`);
+  }
+
+  endSessionById(id: string): Observable<void>{
+    return this.http.get<void>(`/activities/end-session/${id}`);
+  }
 }

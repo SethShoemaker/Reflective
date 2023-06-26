@@ -31,6 +31,10 @@ export class TimeParser {
     static ParseFromStringToPercentageOfDay(s: string): number{
         let time: Time = this.ParseFrom24HourString(s);
 
+        return this.ParseFromTimeToPercentageOfDay(time);
+    }
+
+    static ParseFromTimeToPercentageOfDay(time: Time): number{
         const numMinutesFromStartOfDay: number = (time.hours * 60) + time.minutes;
         const numMinutesInADay: number = 1440;
 

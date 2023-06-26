@@ -43,9 +43,13 @@ export class ActivitySummaryService {
         for (let i = 0; i < dtos.length; i++) {
           const dto: ActivitySummaryItemDto = dtos[i];
           
+          let hasActiveSession: boolean = false;
           let transformedActivitySummaryItemSessions: ActivitySummaryItemSession[] = [];
           for (let j = 0; j < dto.sessions.length; j++) {
             const sessionDto: ActivitySummaryItemSessionDto = dto.sessions[j];
+
+            if (sessionDto.end == null)
+              hasActiveSession = true;
             
             let transformedActivitySummarySession: ActivitySummaryItemSession = {
               id: sessionDto.id,
@@ -77,6 +81,7 @@ export class ActivitySummaryService {
             id: dto.id,
             name: dto.name,
             sessions: transformedActivitySummaryItemSessions,
+            hasActiveSession: hasActiveSession,
             plans: transformedActivitySummaryItemPlans
           }
 
